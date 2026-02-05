@@ -1,0 +1,40 @@
+export const homeData = {
+  hero: {
+    name: "Оксана Бакулина, 25 лет",
+    description:
+      "Продуктовый дизайнер с опытом 2+ года: работала в EdTech и e-commerce. Специализируюсь на сложных интерфейсах и веду задачи от исследования и формулировки проблемы до UI и релиза вместе\nс командой. Бэкграунд — 5+ лет в коммуникационном дизайне.",
+    imageUrl: "/images/home/hero/photo.jpg",
+  },
+  links: [
+    { label: "Резюме", href: "#" },
+    { label: "LinkedIn", href: "#" },
+    { label: "Telegram", href: "https://t.me/oxanasvrv" },
+    { label: "E-mail", href: "mailto:oxanasuvorova99@yandex.ru" },
+  ],
+  projects: [
+    {
+      id: "stemps",
+      title: "STEMPS — корпоративный университет",
+      image: "/images/home/projects/stemps.png",
+      href: "/stemps",
+    },
+    {
+      id: "bureau-dushi",
+      title: "Бюро души — сервис психологической помощи",
+      image: "/images/home/projects/bureau-dushi.png",
+      href: "/bureau-dushi",
+    },
+    {
+      id: "kaspersky",
+      title: "Mobile Security by Kaspersky / Дипломная работа",
+      image: "/images/home/projects/kaspersky.png",
+      href: "/kaspersky",
+    },
+    {
+      id: "other",
+      title: "Другое",
+      image: "",
+      href: "#",
+    },
+  ],
+};
