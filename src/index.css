@@ -59,6 +59,14 @@ body {
 }
 
 :root {
+  /* Project accent colors */
+  --stemps-hero: #a59dff;
+  --stemps-card-bg: #f5f3fe;
+  --stemps-accent: #6755e0;
+  --stemps-section-bg: #f3f3f3;
+  --stemps-muted-text: rgba(51, 51, 51, 0.6);
+  --stemps-laptop-bg: rgba(51, 51, 51, 0.06);
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

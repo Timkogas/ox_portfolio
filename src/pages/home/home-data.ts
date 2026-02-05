@@ -1,4 +1,6 @@
-export const homeData = {
+import type { HomeData } from "@/types/home";
+
+export const homeData: HomeData = {
   hero: {
     name: "Оксана Бакулина, 25 лет",
     description:

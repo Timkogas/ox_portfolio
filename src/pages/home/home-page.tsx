@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { homeData } from "./home-data";
 import Footer from "@/components/footer";
 
@@ -6,6 +7,10 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <Helmet>
+        <title>Оксана Бакулина — продуктовый дизайнер</title>
+        <meta name="description" content="Продуктовый дизайнер с опытом 2+ года: EdTech, e-commerce, сложные интерфейсы." />
+      </Helmet>
       {/* Container with max-width 1390px and 25px side padding */}
       <div className="w-full max-w-[1390px] mx-auto px-[25px] pt-[100px] pb-[70px]">
         {/* Hero Section */}
@@ -18,6 +23,8 @@ export default function HomePage() {
                   src={hero.imageUrl}
                   alt={hero.name}
                   className="w-full h-full object-cover"
+                  width={338}
+                  height={558}
                 />
               )}
             </div>
@@ -40,9 +47,10 @@ export default function HomePage() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="text-semibold text-neutral-900 underline hover:no-underline"
+                    className="text-semibold text-neutral-900 underline hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`${link.label} (откроется в новой вкладке)`}
                   >
                     {link.label}
                   </a>
@@ -59,13 +67,14 @@ export default function HomePage() {
               <a
                 key={project.id}
                 href={project.href}
-                className="group block no-underline"
+                className="group block no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
               >
                 <div className="relative bg-black h-[338px] overflow-hidden max-lg:h-[250px] w-full">
                   {project.image ? (
                     <img
                       src={project.image}
                       alt={project.title}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -87,7 +96,10 @@ export default function HomePage() {
         </section>
       </div>
 
-      <Footer />
+      {/* Footer with same container structure */}
+      <div className="w-full max-w-[1390px] mx-auto px-[25px] pb-[70px]">
+        <Footer />
+      </div>
     </div>
   );
 }

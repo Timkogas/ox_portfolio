@@ -1,18 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import HomePage from "@/pages/home/home-page";
-import StempsPage from "@/pages/stemps/stemps-page";
-import KasperskyPage from "@/pages/kaspersky/kaspersky-page";
-import BureauDushiPage from "@/pages/bureau-dushi/bureau-dushi-page";
+import { lazy, Suspense } from "react";
+
+const HomePage = lazy(() => import("@/pages/home/home-page"));
+const StempsPage = lazy(() => import("@/pages/stemps/stemps-page"));
+const KasperskyPage = lazy(() => import("@/pages/kaspersky/kaspersky-page"));
+const BureauDushiPage = lazy(() => import("@/pages/bureau-dushi/bureau-dushi-page"));
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/stemps/*" element={<StempsPage />} />
-        <Route path="/kaspersky/*" element={<KasperskyPage />} />
-        <Route path="/bureau-dushi/*" element={<BureauDushiPage />} />
-      </Routes>
+      <Suspense fallback={<div className="min-h-screen bg-white" />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/stemps/*" element={<StempsPage />} />
+          <Route path="/kaspersky/*" element={<KasperskyPage />} />
+          <Route path="/bureau-dushi/*" element={<BureauDushiPage />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
