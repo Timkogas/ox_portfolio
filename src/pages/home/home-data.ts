@@ -36,7 +36,7 @@ export const homeData: HomeData = {
       id: "other",
       title: "Другое",
       image: "",
-      href: "#",
+      href: "/drugoe",
     },
   ],
 };
