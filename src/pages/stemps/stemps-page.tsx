@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router";
 import Footer from "@/components/footer";
 import { stempsData } from "./stemps-data";
 import {
@@ -66,7 +67,7 @@ export default function StempsPage() {
             <div className="grid grid-cols-4">
               <div className="col-start-1">
                 <div className="flex items-center gap-[10px] text-size-s">
-                  <span className="text-neutral-900">О себе</span>
+                  <Link to="/" className="text-neutral-900 hover:underline">О себе</Link>
                   <span className="text-neutral-400">/</span>
                   <span className="text-neutral-900">STEMPS</span>
                 </div>
