@@ -56,6 +56,12 @@ body {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Kaspersky */
+  --color-kaspersky-dark-bg: var(--kaspersky-dark-bg);
+  --color-kaspersky-muted-text: var(--kaspersky-muted-text);
+  --color-kaspersky-card-bg: var(--kaspersky-card-bg);
+  --color-kaspersky-accent: var(--kaspersky-accent);
 }
 
 :root {
@@ -66,6 +72,12 @@ body {
   --stemps-section-bg: #f3f3f3;
   --stemps-muted-text: rgba(51, 51, 51, 0.6);
   --stemps-laptop-bg: rgba(51, 51, 51, 0.06);
+
+  /* Kaspersky project colors */
+  --kaspersky-dark-bg: #080A0F;
+  --kaspersky-muted-text: rgba(51, 51, 51, 0.6);
+  --kaspersky-card-bg: #f3f3f3;
+  --kaspersky-accent: #4e9f8d;
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
