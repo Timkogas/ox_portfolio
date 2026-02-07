@@ -376,10 +376,13 @@ export default function StempsPage() {
                               style={{
                                 left: `${image.arrow.position.x}%`,
                                 top: `${image.arrow.position.y}%`,
+                                width: image.arrow.width
+                                  ? `${image.arrow.width}%`
+                                  : undefined,
                               }}
                             />
                             <p
-                              className="absolute w-[223px] text-[14px] text-neutral-900 leading-[1.4] max-lg:static max-lg:w-full max-lg:mt-4"
+                              className="absolute w-[33%] text-[14px] text-neutral-900 leading-[1.4] max-lg:static max-lg:w-full max-lg:mt-4"
                               style={{
                                 left: `${image.text?.position.x}%`,
                                 top: `${image.text?.position.y}%`,

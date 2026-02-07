@@ -171,6 +171,7 @@ export const stempsData: StempsData = {
         arrow: {
           position: { x: 68, y: 24 },
           direction: "right" as const,
+          width: 52,
         },
         text: {
           position: { x: 109, y: 47 },
@@ -184,6 +185,7 @@ export const stempsData: StempsData = {
         arrow: {
           position: { x: -15, y: 18 },
           direction: "left" as const,
+          width: 25,
         },
         text: {
           position: { x: -43, y: 25 },

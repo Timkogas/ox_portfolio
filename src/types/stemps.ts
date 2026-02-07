@@ -57,6 +57,7 @@ export interface Results {
 export interface ArrowConfig {
   position: { x: number; y: number };
   direction: "left" | "right";
+  width?: number; // percentage of container width
 }
 
 export interface TextPosition {
