@@ -236,20 +236,45 @@ export default function StempsPage() {
             <section className="space-y-[36px]">
               {laptops.map((laptop, index) => (
                 <div key={index} className="space-y-4">
-                  <div className="bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] flex items-center justify-center">
-                    {laptop.image ? (
-                      <img
-                        src={laptop.image}
-                        alt={laptop.title}
-                        loading="lazy"
-                        className="w-full h-auto object-contain"
-                      />
-                    ) : (
-                      <div className="text-neutral-400 text-size-s">
-                        Ноутбук {index + 1}: {laptop.title}
+                  {index === 0 ? (
+                    <Link
+                      to="/stemps/kk"
+                      className="group relative block bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] overflow-hidden"
+                    >
+                      {laptop.image ? (
+                        <img
+                          src={laptop.image}
+                          alt={laptop.title}
+                          loading="lazy"
+                          className="w-full h-auto object-contain"
+                        />
+                      ) : (
+                        <div className="text-neutral-400 text-size-s">
+                          Ноутбук {index + 1}: {laptop.title}
+                        </div>
+                      )}
+                      <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="font-medium text-[14px] text-neutral-900">
+                          Подробнее &rarr;
+                        </span>
                       </div>
-                    )}
-                  </div>
+                    </Link>
+                  ) : (
+                    <div className="bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] flex items-center justify-center">
+                      {laptop.image ? (
+                        <img
+                          src={laptop.image}
+                          alt={laptop.title}
+                          loading="lazy"
+                          className="w-full h-auto object-contain"
+                        />
+                      ) : (
+                        <div className="text-neutral-400 text-size-s">
+                          Ноутбук {index + 1}: {laptop.title}
+                        </div>
+                      )}
+                    </div>
+                  )}
                   <div className="py-4">
                     <p className="text-semibold text-neutral-900 text-[14px] mb-2">
                       {laptop.title}{" "}
