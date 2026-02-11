@@ -11,6 +11,17 @@ export interface StempsKKMetric {
   count: number;
 }
 
+export interface EditorAnnotation {
+  text: string;
+  position: { x: number; y: number };
+  width?: number;
+  arrow?: {
+    image: string;
+    position: { x: number; y: number };
+    width?: number;
+  };
+}
+
 export interface StempsKKData {
   heroImage: string;
   videoId: string;
@@ -28,14 +39,10 @@ export interface StempsKKData {
   detailsImages: {
     editor: string;
     templatesPanel: string;
+    panelOffset: { left: number; top: number };
   };
-  detailsAnnotations: {
-    left: string;
-    topRight: string;
-    bottomCenter: string;
-    bottomRight: string;
-    structureText: string;
-  };
+  editorAnnotations: EditorAnnotation[];
+  structureText: string;
   mobileLabel: string;
   mobileImages: string[];
   feedbackText: string;

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router";
 import { lazy, Suspense, useEffect } from "react";
 
 const HomePage = lazy(() => import("@/pages/home/home-page"));
@@ -24,7 +24,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/stemps" element={<StempsPage />} />
-          <Route path="/stemps/kk" element={<StempsKKPage />} />
+          <Route path="/stemps/konstruktor-kursov" element={<StempsKKPage />} />
+          <Route path="/stemps/kk" element={<Navigate to="/stemps/konstruktor-kursov" replace />} />
           <Route path="/kaspersky/*" element={<KasperskyPage />} />
           <Route path="/bureau-dushi/*" element={<BureauDushiPage />} />
           <Route path="/drugoe/*" element={<DrugoePage />} />

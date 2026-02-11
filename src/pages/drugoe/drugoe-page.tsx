@@ -29,7 +29,7 @@ function LazyVideo({ videoId }: { videoId: string }) {
     <div ref={ref} className="w-full max-w-[691px]" style={{ aspectRatio: "691/488" }}>
       {visible && (
         <iframe
-          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&background=1&t=0`}
+          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
           className="w-full h-full"
           allow="autoplay; fullscreen"
           loading="lazy"

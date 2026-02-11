@@ -259,7 +259,7 @@ export default function StempsPage() {
                 <div key={index} className="space-y-4">
                   {index === 0 ? (
                     <Link
-                      to="/stemps/kk"
+                      to="/stemps/konstruktor-kursov"
                       className="group relative block bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden"
                     >
                       {laptop.image ? (
