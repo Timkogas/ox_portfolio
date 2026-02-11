@@ -51,27 +51,52 @@ export const stempsKKData: StempsKKData = {
   editorAnnotations: [
     {
       text: "Быстрый доступ к\u00A0предпросмотру",
-      position: { x: 1.7, y: 7 },
+      position: { x: 4, y: 10 },
+      arrow: {
+        image: "/images/stemps/kk/arrow-1.svg",
+        position: { x: 21.2, y: 5.7 },
+        width: 8,
+      },
     },
     {
       text: "Гибкая модель из\u00A0шаблонов с\u00A0неограниченной вложенностью",
-      position: { x: 1.7, y: 28 },
+      position: { x: 4, y: 47 },
       width: 17,
+      arrow: {
+        image: "/images/stemps/kk/arrow-2.svg",
+        position: { x: 21, y: 38},
+        width: 14,
+      },
     },
     {
       text: "Тип блока, который предлагает альтернативную верстку",
-      position: { x: 78, y: 18 },
+      position: { x: 81.2, y: 27.5},
       width: 16,
+      arrow: {
+        image: "/images/stemps/kk/arrow-3.svg",
+        position: { x: 71.1, y: 23.5 },
+        width: 10,
+      },
     },
     {
       text: "Быстрая панель шаблонов для\u00A0сборки контента",
-      position: { x: 78, y: 50 },
+      position: { x: 79, y: 78 },
       width: 16,
+      arrow: {
+        image: "/images/stemps/kk/arrow-4.svg",
+        position: { x: 66.4, y: 69.5 },
+        width: 12,
+      },
     },
     {
       text: "Актуальная и\u00A0прошлые версии хранятся внутри курса",
-      position: { x: 40, y: 78 },
+      position: { x: 50.1, y: 118 },
       width: 16,
+      arrow: {
+        image: "/images/stemps/kk/arrow-5.svg",
+        position: { x: 37, y: 109 },
+        width: 12,
+      },
     },
   ],
 

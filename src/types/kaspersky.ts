@@ -22,6 +22,10 @@ export interface KasperskyHypothesis {
 export interface KasperskyDarkSection {
   image?: string;
   title?: string;
+  /** Single Kinescope video (landscape) */
+  videoId?: string;
+  /** Multiple Kinescope videos side by side (portrait phones) */
+  videoIds?: string[];
   /** Description inside the dark section (in a card) */
   innerDescription?: string;
   /** Description text that appears AFTER the dark section on white bg */

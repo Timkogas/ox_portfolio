@@ -1,7 +1,95 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 import { kasperskyData } from "./kaspersky-data";
+
+function LazyVideo({ videoId }: { videoId: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "100px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="w-full overflow-hidden"
+      style={{ aspectRatio: "9/19.5" }}
+    >
+      {visible && (
+        <iframe
+          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
+          className="block"
+          allow="autoplay; fullscreen; encrypted-media"
+          loading="lazy"
+          style={{
+            border: "none",
+            width: "300%",
+            height: "100%",
+            marginLeft: "-100%",
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function LazyPhoneVideo({ videoId }: { videoId: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "100px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="flex-1 overflow-hidden rounded-[20px] max-lg:rounded-[10px] bg-kaspersky-dark-bg"
+      style={{ aspectRatio: "9/19.5" }}
+    >
+      {visible && (
+        <iframe
+          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
+          className="block"
+          allow="autoplay; fullscreen; encrypted-media"
+          loading="lazy"
+          style={{
+            border: "none",
+            width: "300%",
+            height: "100%",
+            marginLeft: "-100%",
+          }}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function KasperskyPage() {
   const {
@@ -223,7 +311,7 @@ export default function KasperskyPage() {
       {/* Dark Sections */}
       {darkSections.map((section, index) => (
         <div key={index}>
-          <section className="w-full bg-kaspersky-dark-bg pt-[64px] min-h-[400px] relative z-20">
+          <section className="w-full bg-kaspersky-dark-bg pt-[64px] max-lg:pt-[32px] min-h-[400px] max-lg:min-h-0 relative z-20">
             <div className="w-full max-w-[1440px] mx-auto px-[24px]">
               <div className="grid grid-cols-4 max-lg:grid-cols-1">
                 <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[36px]">
@@ -242,8 +330,21 @@ export default function KasperskyPage() {
                       className="w-full h-auto"
                     />
                   )}
+                  {section.videoId && (
+                    <div className="flex justify-center">
+                      <LazyVideo videoId={section.videoId} />
+                    </div>
+                  )}
                 </div>
               </div>
+
+              {section.videoIds && (
+                <div className="flex justify-center gap-[20px] max-lg:gap-[10px] pt-[36px] pb-[64px] max-lg:pb-[24px] px-[24px]">
+                  {section.videoIds.map((vid, i) => (
+                    <LazyPhoneVideo key={i} videoId={vid} />
+                  ))}
+                </div>
+              )}
             </div>
           </section>
 

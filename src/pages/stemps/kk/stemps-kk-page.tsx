@@ -83,48 +83,6 @@ function LazyVideo({ videoId, background = false }: { videoId: string; backgroun
   );
 }
 
-function ScalableSection({
-  children,
-  referenceWidth = 1392,
-}: {
-  children: React.ReactNode;
-  referenceWidth?: number;
-}) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-  const [height, setHeight] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    const update = () => {
-      if (!containerRef.current || !contentRef.current) return;
-      const w = containerRef.current.offsetWidth;
-      const s = Math.min(1, w / referenceWidth);
-      setScale(s);
-      setHeight(contentRef.current.offsetHeight * s);
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(containerRef.current!);
-    return () => ro.disconnect();
-  }, [referenceWidth]);
-
-  return (
-    <div ref={containerRef} className="w-full overflow-hidden" style={{ height }}>
-      <div
-        ref={contentRef}
-        style={{
-          width: referenceWidth,
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-}
-
 export default function StempsKKPage() {
   const {
     task,
@@ -152,7 +110,7 @@ export default function StempsKKPage() {
         title="Конструктор курсов — STEMPS | Оксана Бакулина"
         description="Кейс Конструктор курсов STEMPS — раздел для запуска обучения под задачи бизнеса. Продуктовый дизайн от исследования до релиза."
         breadcrumbs={[
-          { label: "Главная", to: "/" },
+          { label: "О себе", to: "/" },
           { label: "Проект", to: "/stemps" },
           { label: "Конструктор курсов" },
         ]}
@@ -229,79 +187,140 @@ export default function StempsKKPage() {
         </div>
       </div>
 
-      {/* Gray section — editor screenshots + annotations (scales proportionally) */}
+      {/* Gray section — editor screenshots + annotations */}
       <section className="w-full bg-[rgba(51,51,51,0.06)]">
-        <ScalableSection referenceWidth={1392}>
-          <div style={{ width: 1392 }}>
-            <div className="relative px-[24px] py-[44px]">
-              {/* Editor screenshot — center columns */}
-              <div className="ml-[25%] w-[50%]">
-                <img
-                  src={detailsImages.editor}
-                  alt="Редактор конструктора курсов"
-                  loading="lazy"
-                  className="w-full h-auto rounded-[10px]"
-                />
-              </div>
-
-              {/* Templates panel — offset from content area */}
-              <img
-                src={detailsImages.templatesPanel}
-                alt="Панель шаблонов"
-                loading="lazy"
-                className="absolute w-[31%] h-auto rounded-[10px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.04),4px_2px_8px_0px_rgba(0,0,0,0.06)]"
-                style={{
-                  left: `calc(25% + ${detailsImages.panelOffset.left}px)`,
-                  top: `calc(44px + ${detailsImages.panelOffset.top}px)`,
-                }}
-              />
-
-              {/* Annotations — from data, positioned with percentages */}
-              {editorAnnotations.map((annotation, i) => (
-                <div key={i}>
-                  <p
-                    className="absolute text-[14px] text-neutral-900 leading-[1.2]"
+        {/* Desktop layout */}
+        <div className="w-full max-w-[1440px] mx-auto px-[24px] max-lg:hidden">
+          {/* Image + annotations positioning context */}
+          <div className="relative">
+            <div className="grid grid-cols-4">
+              <div className="col-start-2 col-span-2 py-[44px]">
+                <div className="relative">
+                  <img
+                    src={detailsImages.editor}
+                    alt="Редактор конструктора курсов"
+                    loading="lazy"
+                    className="w-full h-auto rounded-[10px]"
+                  />
+                  <img
+                    src={detailsImages.templatesPanel}
+                    alt="Панель шаблонов"
+                    loading="lazy"
+                    className="absolute w-[62%] h-auto rounded-[10px]"
                     style={{
-                      left: `${annotation.position.x}%`,
-                      top: `${annotation.position.y}%`,
-                      width: annotation.width ? `${annotation.width}%` : undefined,
+                      left: detailsImages.panelOffset.left,
+                      bottom: detailsImages.panelOffset.top * -1,
                     }}
-                  >
-                    {annotation.text}
-                  </p>
-                  {annotation.arrow && (
-                    <img
-                      src={annotation.arrow.image}
-                      alt=""
-                      role="presentation"
-                      className="absolute pointer-events-none"
-                      style={{
-                        left: `${annotation.arrow.position.x}%`,
-                        top: `${annotation.arrow.position.y}%`,
-                        width: annotation.arrow.width
-                          ? `${annotation.arrow.width}%`
-                          : undefined,
-                      }}
-                    />
-                  )}
+                  />
                 </div>
-              ))}
+              </div>
             </div>
 
-            {/* Structure text */}
-            <div className="px-[24px] pb-[64px]">
-              <div className="ml-[25%] w-[50%]">
-                <p className="text-[14px] text-neutral-900 leading-[1.2]">
-                  {structureText.split("курс \u2192")[0]}
-                  <span className="font-medium">
-                    курс &rarr; версия курса &rarr; модуль &rarr; тип
-                    урока &rarr; блок
-                  </span>
+            {/* Annotations + arrows — absolute, positioned with % */}
+            {editorAnnotations.map((annotation, i) => (
+              <div key={i}>
+                <p
+                  className="absolute text-[14px] text-neutral-900 leading-[1.2]"
+                  style={{
+                    left: `${annotation.position.x}%`,
+                    top: `${annotation.position.y}%`,
+                    width: annotation.width ? `${annotation.width}%` : undefined,
+                  }}
+                >
+                  {annotation.text}
                 </p>
+                {annotation.arrow && (
+                  <img
+                    src={annotation.arrow.image}
+                    alt=""
+                    role="presentation"
+                    className="absolute pointer-events-none"
+                    style={{
+                      left: `${annotation.arrow.position.x}%`,
+                      top: `${annotation.arrow.position.y}%`,
+                      width: annotation.arrow.width
+                        ? `${annotation.arrow.width}%`
+                        : undefined,
+                    }}
+                  />
+                )}
               </div>
+            ))}
+          </div>
+
+          {/* Structure text — outside relative, with top space for panel overflow */}
+          <div className="grid grid-cols-4 pt-[190px] pb-[64px]">
+            <div className="col-start-2 col-span-2">
+              <p className="text-[14px] text-neutral-900 leading-[1.2]">
+                {structureText.split("курс \u2192")[0]}
+                <span className="font-medium">
+                  курс &rarr; версия курса &rarr; модуль &rarr; тип
+                  урока &rarr; блок
+                </span>
+              </p>
             </div>
           </div>
-        </ScalableSection>
+        </div>
+
+        {/* Mobile layout — images with number markers + legend below */}
+        <div className="hidden max-lg:block px-[24px] py-[44px]">
+          {/* Images with numbered markers */}
+          <div className="relative">
+            <img
+              src={detailsImages.editor}
+              alt="Редактор конструктора курсов"
+              loading="lazy"
+              className="w-full h-auto rounded-[10px]"
+            />
+            <img
+              src={detailsImages.templatesPanel}
+              alt="Панель шаблонов"
+              loading="lazy"
+              className="w-[62%] h-auto rounded-[10px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.04),4px_2px_8px_0px_rgba(0,0,0,0.06)] mt-[16px]"
+            />
+
+            {/* Number markers at arrow target positions */}
+            {editorAnnotations.map((annotation, i) =>
+              annotation.arrow ? (
+                <span
+                  key={i}
+                  className="absolute w-[20px] h-[20px] rounded-full bg-neutral-900 text-white text-[11px] font-medium flex items-center justify-center"
+                  style={{
+                    left: `${annotation.arrow.position.x}%`,
+                    top: `${annotation.arrow.position.y}%`,
+                  }}
+                >
+                  {i + 1}
+                </span>
+              ) : null,
+            )}
+          </div>
+
+          {/* Numbered legend */}
+          <div className="flex flex-col gap-[12px] mt-[24px]">
+            {editorAnnotations.map((annotation, i) => (
+              <div key={i} className="flex gap-[10px] items-start">
+                <span className="shrink-0 w-[20px] h-[20px] rounded-full bg-neutral-900 text-white text-[11px] font-medium flex items-center justify-center mt-[1px]">
+                  {i + 1}
+                </span>
+                <p className="text-[14px] text-neutral-900 leading-[1.2]">
+                  {annotation.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Structure text */}
+          <div className="mt-[32px]">
+            <p className="text-[14px] text-neutral-900 leading-[1.2]">
+              {structureText.split("курс \u2192")[0]}
+              <span className="font-medium">
+                курс &rarr; версия курса &rarr; модуль &rarr; тип
+                урока &rarr; блок
+              </span>
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* "Ниже покажу..." text */}
@@ -382,13 +401,13 @@ export default function StempsKKPage() {
             className="w-full max-w-[690px] h-auto px-[24px]"
           />
 
-          {/* Metrics cards — overflow hidden on mobile, no side padding */}
-          <div className="w-full overflow-hidden px-[24px] max-lg:px-0 max-lg:pl-5 pb-5">
-            <div className="flex gap-[20px] min-w-[1100px]">
+          {/* Metrics cards — grid on desktop, scroll carousel on mobile */}
+          <div className="w-full overflow-x-auto px-[24px] pb-5 scrollbar-hide">
+            <div className="grid grid-cols-5 gap-[12px] max-lg:flex max-lg:gap-[12px] max-lg:w-max">
               {metrics.map((m, i) => (
                 <div
                   key={i}
-                  className="flex-1 bg-white border border-[#f3f3f4] rounded-[10px] p-[20px] flex flex-col gap-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.04),4px_2px_8px_0px_rgba(0,0,0,0.06)]"
+                  className="max-lg:w-[200px] max-lg:shrink-0 bg-white border border-[#f3f3f4] rounded-[10px] p-[20px] flex flex-col gap-[30px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.04),4px_2px_8px_0px_rgba(0,0,0,0.06)]"
                 >
                   <p className="text-[16px] font-medium text-[#1d1d22] leading-[20px]">
                     {m.title}
