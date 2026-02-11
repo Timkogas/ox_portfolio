@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 import { stempsData } from "./stemps-data";
@@ -69,7 +70,7 @@ export default function StempsPage() {
       {/* 4 Column Grid Container - max-w 1440px */}
       <div className="w-full max-w-[1440px] mx-auto px-[25px]">
         {/* Project Info Grid - 4 columns */}
-        <section className="grid grid-cols-4 h-[58px] items-center max-lg:grid-cols-2">
+        <section className="grid grid-cols-4 h-[58px] items-center max-lg:grid-cols-2 max-lg:h-auto max-lg:gap-[16px] max-lg:pt-[24px] max-sm:grid-cols-1">
           <div>
             <p className="text-[14px] text-neutral-900 text-semibold">
               Бренд: <br />{projectInfo.brand}
@@ -157,9 +158,10 @@ export default function StempsPage() {
               <p className="text-size-m text-neutral-900 mb-[24px]">
                 {clients.title}
               </p>
-              <div className="space-y-[12px]">
+              {/* Desktop layout */}
+              <div className="space-y-[12px] max-lg:hidden">
                 {/* 3 Client cards */}
-                <div className="grid grid-cols-3 gap-[12px] max-lg:grid-cols-1">
+                <div className="grid grid-cols-3 gap-[12px]">
                   {clients.types.map((client, index) => (
                     <div key={index} className="bg-[var(--stemps-card-bg)] p-[20px] rounded-[14px]">
                       <p className="text-semibold text-neutral-900 text-[14px] leading-[1.2]">
@@ -214,6 +216,36 @@ export default function StempsPage() {
                   ))}
                 </div>
               </div>
+
+              {/* Mobile layout — card → arrow → badges, stacked */}
+              <div className="hidden max-lg:flex flex-col gap-[16px]">
+                {clients.types.map((client, index) => (
+                  <div key={index} className="flex flex-col items-center gap-[12px]">
+                    <div className="bg-[var(--stemps-card-bg)] p-[20px] rounded-[14px] w-full">
+                      <p className="text-semibold text-neutral-900 text-[14px] leading-[1.2]">
+                        {client.title} —{" "}
+                        <span className="font-normal">{client.description}</span>
+                      </p>
+                    </div>
+                    <img
+                      src="/images/arrow.svg"
+                      alt=""
+                      role="presentation"
+                      className="h-[37px] w-auto"
+                    />
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {client.badges.map((badge, badgeIndex) => (
+                        <span
+                          key={badgeIndex}
+                          className="px-[14px] py-[5px] bg-[var(--stemps-card-bg)] border border-[var(--stemps-accent)] rounded-full text-[12px] text-[var(--stemps-accent)]"
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </section>
 
             {/* Structure Section */}
@@ -228,7 +260,7 @@ export default function StempsPage() {
                   {index === 0 ? (
                     <Link
                       to="/stemps/kk"
-                      className="group relative block bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] overflow-hidden"
+                      className="group relative block bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden"
                     >
                       {laptop.image ? (
                         <img
@@ -249,7 +281,7 @@ export default function StempsPage() {
                       </div>
                     </Link>
                   ) : (
-                    <div className="bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] flex items-center justify-center">
+                    <div className="group relative bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden flex items-center justify-center">
                       {laptop.image ? (
                         <img
                           src={laptop.image}
@@ -262,6 +294,11 @@ export default function StempsPage() {
                           Ноутбук {index + 1}: {laptop.title}
                         </div>
                       )}
+                      <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="font-medium text-[14px] text-neutral-900">
+                          В разработке
+                        </span>
+                      </div>
                     </div>
                   )}
                   <div className="py-4">

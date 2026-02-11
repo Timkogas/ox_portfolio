@@ -9,10 +9,16 @@ export interface Link {
   href: string;
 }
 
+export interface ProjectImage {
+  src: string;
+  position: "center" | "left" | "right";
+}
+
 export interface Project {
   id: string;
   title: string;
-  image: string;
+  image?: string;
+  images?: ProjectImage[];
   href: string;
 }
 

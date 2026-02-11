@@ -70,7 +70,25 @@ export default function HomePage() {
                 className="group block no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
               >
                 <div className="relative bg-black h-[338px] overflow-hidden max-lg:h-[250px] w-full">
-                  {project.image ? (
+                  {project.images ? (
+                    <div className="relative w-full h-full">
+                      {project.images.map((img, i) => (
+                        <img
+                          key={i}
+                          src={img.src}
+                          alt={i === 0 ? project.title : ""}
+                          loading="lazy"
+                          className={`absolute top-0 bottom-0 h-full object-contain ${
+                            img.position === "center"
+                              ? "left-1/2 -translate-x-1/2"
+                              : img.position === "left"
+                                ? "left-0"
+                                : "right-[8px]"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  ) : project.image ? (
                     <img
                       src={project.image}
                       alt={project.title}

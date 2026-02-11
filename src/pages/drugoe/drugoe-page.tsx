@@ -26,12 +26,11 @@ function LazyVideo({ videoId }: { videoId: string }) {
   }, []);
 
   return (
-    <div ref={ref} style={{ width: 691, height: 488 }}>
+    <div ref={ref} className="w-full max-w-[691px]" style={{ aspectRatio: "691/488" }}>
       {visible && (
         <iframe
           src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&background=1&t=0`}
-          width={691}
-          height={488}
+          className="w-full h-full"
           allow="autoplay; fullscreen"
           loading="lazy"
           style={{ border: "none" }}
@@ -77,13 +76,13 @@ export default function DrugoePage() {
           </div>
 
           {/* Dark block with video */}
-          <div className="w-full bg-black py-[64px] flex justify-center">
+          <div className="w-full bg-black py-[64px] max-lg:py-[24px] flex justify-center px-[24px]">
             <LazyVideo videoId={project.videoId} />
           </div>
 
           {/* Images */}
           {project.images && (
-            <div className="w-full bg-black flex justify-center gap-[11px] pb-[64px]">
+            <div className="w-full bg-black flex justify-center gap-[11px] max-lg:flex-col max-lg:items-center max-lg:gap-[16px] pb-[64px] max-lg:pb-[24px] px-[24px]">
               {project.images.map((src, i) => (
                 <img
                   key={i}
@@ -92,6 +91,7 @@ export default function DrugoePage() {
                   height={196}
                   alt=""
                   loading="lazy"
+                  className="max-lg:w-full max-lg:h-auto"
                 />
               ))}
             </div>

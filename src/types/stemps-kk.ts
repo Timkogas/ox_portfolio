@@ -13,6 +13,7 @@ export interface StempsKKMetric {
 
 export interface StempsKKData {
   heroImage: string;
+  videoId: string;
   task: {
     title: string;
     content: string;
@@ -23,7 +24,6 @@ export interface StempsKKData {
   };
   hypotheses: StempsKKHypothesis[];
   beforeEditor: string;
-  darkBlockHeight: number;
   detailsLabel: string;
   detailsImages: {
     editor: string;

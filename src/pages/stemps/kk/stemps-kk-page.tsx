@@ -1,6 +1,50 @@
+import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 import { stempsKKData } from "./stemps-kk-data";
+
+function KinescopeVideo({ videoId }: { videoId: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full bg-[#1d1d22]">
+      <div className="w-full max-w-[1440px] mx-auto px-[24px]">
+        <div className="grid grid-cols-4 max-lg:grid-cols-1">
+          <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 py-[44px]">
+            <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+              {visible && (
+                <iframe
+                  src={`https://kinescope.io/embed/${videoId}`}
+                  className="absolute inset-0 w-full h-full rounded-[10px]"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  allowFullScreen
+                  style={{ border: "none" }}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function StempsKKPage() {
   const {
@@ -8,7 +52,7 @@ export default function StempsKKPage() {
     process,
     hypotheses,
     beforeEditor,
-    darkBlockHeight,
+    videoId,
     detailsLabel,
     detailsImages,
     detailsAnnotations,
@@ -30,7 +74,7 @@ export default function StempsKKPage() {
         breadcrumbs={[
           { label: "Главная", to: "/" },
           { label: "Проект", to: "/stemps" },
-          { label: "Подпроект" },
+          { label: "Конструктор курсов" },
         ]}
       />
 
@@ -177,11 +221,8 @@ export default function StempsKKPage() {
         </div>
       </div>
 
-      {/* Dark block — video placeholder */}
-      <div
-        className="w-full bg-[#1d1d22]"
-        style={{ height: `${darkBlockHeight}px` }}
-      />
+      {/* Dark block — video */}
+      <KinescopeVideo videoId={videoId} />
 
       {/* Детали label */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">

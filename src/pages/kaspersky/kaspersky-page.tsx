@@ -38,7 +38,7 @@ export default function KasperskyPage() {
 
       {/* Project Info Grid */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-        <section className="grid grid-cols-4 h-[58px] items-center max-lg:grid-cols-2">
+        <section className="grid grid-cols-4 h-[58px] items-center max-lg:grid-cols-1 max-lg:h-auto max-lg:gap-[16px] max-lg:pt-[24px]">
           <div>
             <p className="text-[14px] text-neutral-900 font-medium leading-[1.2] tracking-[-0.14px]">
               Бренд: <br />

@@ -17,25 +17,31 @@ export const homeData: HomeData = {
     {
       id: "stemps",
       title: "STEMPS — корпоративный университет",
-      image: "/images/home/projects/stemps.png",
+      images: [
+        { src: "/images/home/projects/stemps-.png", position: "right" },
+      ],
       href: "/stemps",
     },
     {
       id: "bureau-dushi",
       title: "Бюро души — сервис психологической помощи",
-      image: "/images/home/projects/bureau-dushi.png",
+      images: [
+        { src: "/images/home/projects/bureau-dushi-.png", position: "right" },
+      ],
       href: "/bureau-dushi",
     },
     {
       id: "kaspersky",
       title: "Mobile Security by Kaspersky / Дипломная работа",
-      image: "/images/home/projects/kaspersky.png",
+      image: "/images/home/projects/kaspersky-.jpg",
       href: "/kaspersky",
     },
     {
       id: "other",
       title: "Другое",
-      image: "",
+      images: [
+        { src: "/images/home/projects/drugoe.png", position: "right" },
+      ],
       href: "/drugoe",
     },
   ],

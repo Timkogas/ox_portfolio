@@ -2,6 +2,7 @@ import type { StempsKKData } from "@/types/stemps-kk";
 
 export const stempsKKData: StempsKKData = {
   heroImage: "/images/stemps/laptop-1-constructor.png",
+  videoId: "rfy4Bvj7VWPdTseVCQqFmK",
 
   task: {
     title: "Задача",
@@ -38,8 +39,6 @@ export const stempsKKData: StempsKKData = {
 
   beforeEditor:
     "Ниже покажу, как редактор решает базовые задачи автора: как собрать курс из\u00A0готовых блоков, настроить структуру и\u00A0быстро обновить контент",
-
-  darkBlockHeight: 527,
 
   detailsLabel: "Детали:",
 
