@@ -27,33 +27,39 @@ export const bureauDushiData: BureauDushiData = {
       {
         title: "Промо-обложка",
         text: "Сначала у\u00A0нас был лишь набор цитат. Предложила усилить блок, добавив CTA в\u00A0отдельные карточки, чтобы быстрее вести к\u00A0ближайшей записи или к\u00A0специалисту",
+        image: "/images/bureau-dushi/promo-cover.png",
       },
       {
         title: "Виды услуг",
         text: "Объясняет форматы сессий и\u00A0их преимущества, чтобы пользователю было проще выбрать. Главный фокус\u00A0— групповые сессии как часть УТП",
+        image: "/images/bureau-dushi/services.png",
       },
       {
         title: "Психологи",
         text: "Ввели блок «Психологи», чтобы пользователю было проще решиться: увидеть специалистов, понять, кто подходит, и\u00A0сразу перейти к\u00A0записи",
+        image: "/images/bureau-dushi/psychologists.png",
       },
       {
         title: "Инструкция",
         text: "Для тех, кто сомневается или не\u00A0понимает, как устроен сервис\u00A0— чтобы упростить первый шаг",
+        image: "/images/bureau-dushi/instruction.png",
       },
       {
         title: "Команда",
         text: "Поскольку платформа рассчитана и\u00A0на клиентов, и\u00A0на специалистов, при расширении команды появился запрос на\u00A0отдельный блок для психологов\u00A0— добавили его на\u00A0сайт",
+        image: "/images/bureau-dushi/team.png",
       },
       {
         title: "FAQ",
         text: "Выделили основные вопросы, которые могут возникать у\u00A0нашей ЦА",
+        image: "/images/bureau-dushi/faq.png",
       },
       {
         title: "Контакты",
         text: "Прямая ссылка на\u00A0менеджера и\u00A0футтер",
+        image: "/images/bureau-dushi/contacts.png",
       },
     ],
-    sitemapImage: "/images/bureau-dushi/sitemap.png",
   },
 
   afterStructure:
@@ -92,6 +98,11 @@ export const bureauDushiData: BureauDushiData = {
   wireframesImage: "/images/bureau-dushi/wireframes.png",
 
   darkBlock: {
-    height: 898,
+    videoId: "t6X47sqTJhW5NHV877sFfc",
+    phoneImages: [
+      "/images/bureau-dushi/phone-1.png",
+      "/images/bureau-dushi/phone-2.png",
+      "/images/bureau-dushi/phone-3.png",
+    ],
   },
 };

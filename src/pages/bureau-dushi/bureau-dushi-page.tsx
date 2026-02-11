@@ -1,6 +1,42 @@
+import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 import { bureauDushiData } from "./bureau-dushi-data";
+
+function LazyVideo({ videoId }: { videoId: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "100px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="w-full max-w-[690px]" style={{ aspectRatio: "690/398" }}>
+      {visible && (
+        <iframe
+          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
+          className="w-full h-full"
+          allow="autoplay; fullscreen; encrypted-media"
+          loading="lazy"
+          style={{ border: "none" }}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function BureauDushiPage() {
   const {
@@ -92,35 +128,39 @@ export default function BureauDushiPage() {
         </div>
       </div>
 
-      {/* Structure diagram — blocks + sitemap */}
-      <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-        <div className="grid grid-cols-4 max-lg:grid-cols-1">
-          <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
-            <div className="flex gap-[12px] max-lg:flex-col">
-              {/* Text blocks */}
-              <div className="flex flex-col gap-[24px] flex-1">
-                {structure.blocks.map((block, i) => (
-                  <div key={i} className="flex flex-col gap-[8px]">
-                    <p className="text-[14px] font-semibold text-neutral-900 leading-[1.2]">
-                      {block.title}
-                    </p>
-                    <p className="text-[14px] text-neutral-900 leading-[1.2]">
-                      {block.text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              {/* Sitemap image */}
-              <div className="w-[339px] shrink-0 max-lg:w-full">
+      {/* Structure blocks — each block as a row with dividers */}
+      <div className="w-full max-w-[690px] mx-auto">
+        <div className="bg-[#f3f3f3] rounded-[10px]">
+          {structure.blocks.map((block, i) => (
+            <div key={i}>
+              <div className="grid grid-cols-2 gap-[24px] items-start max-lg:grid-cols-1">
+                <div className="flex flex-col gap-[8px] p-5">
+                  <p className="text-[18px] font-semibold text-neutral-900 leading-[1.2]">
+                    {block.title}
+                  </p>
+                  <p className="text-[14px] text-neutral-900 leading-[1.4]">
+                    {block.text}
+                  </p>
+                </div>
                 <img
-                  src={structure.sitemapImage}
-                  alt="Структура страницы"
+                  src={block.image}
+                  alt={block.title}
                   loading="lazy"
-                  className="w-full h-auto"
+                  className={`w-full h-auto ${i === 0 ? "" : "-mt-5"}`}
                 />
               </div>
+              {i < structure.blocks.length - 1 && (
+                <div
+                  className="h-3.5 w-full relative z-40"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(-45deg, #FF85E3 10%, transparent 10%, transparent 50%, #FF85E3 50%, #FF85E3 60%, transparent 60%)",
+                    backgroundSize: "8px 8px",
+                  }}
+                />
+              )}
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -165,20 +205,25 @@ export default function BureauDushiPage() {
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[24px]">
             {problemSolutions.map((ps, i) => (
-              <div key={i} className="grid grid-cols-2 gap-[12px] max-lg:grid-cols-1">
-                <div className="bg-[#f3f3f3] rounded-[10px] p-[16px] flex flex-col gap-[8px]">
-                  <p className="text-[12px] font-medium text-[rgba(51,51,51,0.6)] leading-[1.2]">
-                    {i < 2 ? "Проблема / запрос" : "Проблема / запрос"}
+              <div key={i} className="flex items-stretch gap-[16px] max-lg:flex-col">
+                <div className="flex-1 bg-[#f3f3f3] rounded-[10px] p-[16px]">
+                  <p className="text-size-sm text-neutral-900 font-medium">
+                    Проблема / запрос
                   </p>
-                  <p className="text-[14px] text-neutral-900 leading-[1.2]">
+                  <p className="text-size-sm  leading-5 text-neutral-900">
                     {ps.problem}
                   </p>
                 </div>
-                <div className="bg-[#f3f3f3] rounded-[10px] p-[16px] flex flex-col gap-[8px]">
-                  <p className="text-[12px] font-medium text-[rgba(51,51,51,0.6)] leading-[1.2]">
+                <img
+                  src="/images/bureau-dushi/arrow-right.svg"
+                  alt=""
+                  className="w-[38px] h-[15px] shrink-0 self-center max-lg:rotate-90"
+                />
+                <div className="flex-1 bg-[#f3f3f3] rounded-[10px] p-[16px]">
+                  <p className="text-size-sm  text-neutral-900 font-medium">
                     {i < 2 ? "Предложение / решение" : "Гипотеза решения"}
                   </p>
-                  <p className="text-[14px] text-neutral-900 leading-[1.2]">
+                  <p className="text-size-sm leading-5  text-neutral-900">
                     {ps.solution}
                   </p>
                 </div>
@@ -244,11 +289,32 @@ export default function BureauDushiPage() {
         </div>
       </div>
 
-      {/* Dark block — placeholder */}
-      <div
-        className="w-full bg-black"
-        style={{ height: `${darkBlock.height}px` }}
-      />
+      {/* Dark block — video + phone screens */}
+      <section className="w-full bg-black">
+        {/* Video */}
+        <div className="flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
+          <LazyVideo videoId={darkBlock.videoId} />
+        </div>
+
+        {/* Phone screenshots */}
+        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
+          <div className="grid grid-cols-4 max-lg:grid-cols-1">
+            <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 pb-[64px]">
+              <div className="flex items-end justify-between gap-[12px]">
+                {darkBlock.phoneImages.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`Мобильная версия ${i + 1}`}
+                    loading="lazy"
+                    className="w-[174px] h-auto max-lg:w-[calc((100%-24px)/3)]"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">

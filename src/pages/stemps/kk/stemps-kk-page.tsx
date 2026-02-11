@@ -188,7 +188,7 @@ export default function StempsKKPage() {
       </div>
 
       {/* Gray section — editor screenshots + annotations */}
-      <section className="w-full bg-[rgba(51,51,51,0.06)]">
+      <section className="w-full bg-[rgba(51,51,51,0.06)] overflow-x-clip">
         {/* Desktop layout */}
         <div className="w-full max-w-[1440px] mx-auto px-[24px] max-lg:hidden">
           {/* Image + annotations positioning context */}
@@ -262,9 +262,9 @@ export default function StempsKKPage() {
           </div>
         </div>
 
-        {/* Mobile layout — images with number markers + legend below */}
-        <div className="hidden max-lg:block px-[24px] py-[44px]">
-          {/* Images with numbered markers */}
+        {/* Mobile layout — two images stacked + numbered legend */}
+        <div className="hidden max-lg:flex max-lg:flex-col gap-[16px] px-[24px] py-[44px]">
+          {/* Editor image with markers 1–4 */}
           <div className="relative">
             <img
               src={detailsImages.editor}
@@ -272,22 +272,40 @@ export default function StempsKKPage() {
               loading="lazy"
               className="w-full h-auto rounded-[10px]"
             />
+            {editorAnnotations.map((annotation, i) =>
+              annotation.mobileMarker && annotation.mobileMarker.target !== "panel" ? (
+                <span
+                  key={i}
+                  className="absolute w-[16px] h-[16px] rounded-full bg-neutral-900 text-white text-[9px] font-medium flex items-center justify-center"
+                  style={{
+                    left: `${annotation.mobileMarker.x}%`,
+                    top: `${annotation.mobileMarker.y}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  {i + 1}
+                </span>
+              ) : null,
+            )}
+          </div>
+
+          {/* Templates panel with marker 5 */}
+          <div className="relative w-[62%]">
             <img
               src={detailsImages.templatesPanel}
               alt="Панель шаблонов"
               loading="lazy"
-              className="w-[62%] h-auto rounded-[10px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.04),4px_2px_8px_0px_rgba(0,0,0,0.06)] mt-[16px]"
+              className="w-full h-auto rounded-[10px]"
             />
-
-            {/* Number markers at arrow target positions */}
             {editorAnnotations.map((annotation, i) =>
-              annotation.arrow ? (
+              annotation.mobileMarker?.target === "panel" ? (
                 <span
                   key={i}
-                  className="absolute w-[20px] h-[20px] rounded-full bg-neutral-900 text-white text-[11px] font-medium flex items-center justify-center"
+                  className="absolute w-[16px] h-[16px] rounded-full bg-neutral-900 text-white text-[9px] font-medium flex items-center justify-center"
                   style={{
-                    left: `${annotation.arrow.position.x}%`,
-                    top: `${annotation.arrow.position.y}%`,
+                    left: `${annotation.mobileMarker.x}%`,
+                    top: `${annotation.mobileMarker.y}%`,
+                    transform: "translate(-50%, -50%)",
                   }}
                 >
                   {i + 1}
@@ -297,10 +315,10 @@ export default function StempsKKPage() {
           </div>
 
           {/* Numbered legend */}
-          <div className="flex flex-col gap-[12px] mt-[24px]">
+          <div className="flex flex-col gap-[12px] mt-[8px]">
             {editorAnnotations.map((annotation, i) => (
               <div key={i} className="flex gap-[10px] items-start">
-                <span className="shrink-0 w-[20px] h-[20px] rounded-full bg-neutral-900 text-white text-[11px] font-medium flex items-center justify-center mt-[1px]">
+                <span className="shrink-0 w-[16px] h-[16px] rounded-full bg-neutral-900 text-white text-[9px] font-medium flex items-center justify-center mt-[2px]">
                   {i + 1}
                 </span>
                 <p className="text-[14px] text-neutral-900 leading-[1.2]">
@@ -311,7 +329,7 @@ export default function StempsKKPage() {
           </div>
 
           {/* Structure text */}
-          <div className="mt-[32px]">
+          <div className="mt-[16px]">
             <p className="text-[14px] text-neutral-900 leading-[1.2]">
               {structureText.split("курс \u2192")[0]}
               <span className="font-medium">

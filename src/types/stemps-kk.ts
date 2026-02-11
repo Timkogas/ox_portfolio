@@ -20,6 +20,8 @@ export interface EditorAnnotation {
     position: { x: number; y: number };
     width?: number;
   };
+  /** Marker position on mobile (% relative to individual image) */
+  mobileMarker?: { x: number; y: number; target?: "editor" | "panel" };
 }
 
 export interface StempsKKData {

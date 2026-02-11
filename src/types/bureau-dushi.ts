@@ -8,6 +8,7 @@ export interface BureauDushiProjectInfo {
 export interface BureauDushiStructureBlock {
   title: string;
   text: string;
+  image: string;
 }
 
 export interface BureauDushiProblemSolution {
@@ -28,7 +29,6 @@ export interface BureauDushiData {
   };
   structure: {
     blocks: BureauDushiStructureBlock[];
-    sitemapImage: string;
   };
   afterStructure: string;
   keyPagesImage: string;
@@ -38,6 +38,7 @@ export interface BureauDushiData {
   referencesImage: string;
   wireframesImage: string;
   darkBlock: {
-    height: number;
+    videoId: string;
+    phoneImages: string[];
   };
 }
