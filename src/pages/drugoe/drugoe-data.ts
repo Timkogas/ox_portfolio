@@ -5,23 +5,21 @@ export const drugoeData: DrugoeData = {
     {
       title: "Проект «Портал для развития карьеры дизайнера»",
       titleMuted: "Учебное",
-      darkBlock: {
-        height: 604,
-      },
+      videoId: "sTDSmHw29QX1HoHKCq6xbX",
     },
     {
       title: "Проект «Формирование продуктовой корзины»",
       titleMuted: "Учебное",
-      darkBlock: {
-        height: 617,
-      },
+      videoId: "aQAPhLLAWGSCGbqJcQNgqe",
     },
     {
       title: "Самокат. Карта вакансий",
       titleMuted: "Учебное",
-      darkBlock: {
-        height: 806,
-      },
+      videoId: "tsAhESnG6dJMnWYmrLUEZg",
+      images: [
+        "/images/drugoe/samokat-1.png",
+        "/images/drugoe/samokat-2.png",
+      ],
     },
   ],
 };

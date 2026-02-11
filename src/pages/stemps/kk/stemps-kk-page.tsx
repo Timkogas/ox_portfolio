@@ -1,6 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router";
 import Footer from "@/components/footer";
+import PageHeader from "@/components/page-header";
 import { stempsKKData } from "./stemps-kk-data";
 
 export default function StempsKKPage() {
@@ -25,37 +24,18 @@ export default function StempsKKPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Helmet>
-        <title>
-          Конструктор курсов — STEMPS | Оксана Бакулина
-        </title>
-        <meta
-          name="description"
-          content="Кейс Конструктор курсов STEMPS — раздел для запуска обучения под задачи бизнеса. Продуктовый дизайн от исследования до релиза."
-        />
-      </Helmet>
+      <PageHeader
+        title="Конструктор курсов — STEMPS | Оксана Бакулина"
+        description="Кейс Конструктор курсов STEMPS — раздел для запуска обучения под задачи бизнеса. Продуктовый дизайн от исследования до релиза."
+        breadcrumbs={[
+          { label: "Главная", to: "/" },
+          { label: "Проект", to: "/stemps" },
+          { label: "Подпроект" },
+        ]}
+      />
 
-      {/* Hero — gray block with breadcrumbs + white gradient */}
-      <section className="relative w-full h-[515px] bg-[#ebebeb]">
-        <div className="absolute top-0 left-0 right-0 h-[60px] bg-gradient-to-b from-white from-0% via-white/95 via-80% to-transparent pt-4">
-          <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-            <div className="flex items-center gap-[10px] text-size-s">
-              <Link to="/" className="text-neutral-900 hover:underline">
-                Главная
-              </Link>
-              <span className="text-[rgba(51,51,51,0.06)]">/</span>
-              <Link
-                to="/stemps"
-                className="text-neutral-900 hover:underline"
-              >
-                Проект
-              </Link>
-              <span className="text-[rgba(51,51,51,0.06)]">/</span>
-              <span className="text-neutral-900">Подпроект</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero — gray block */}
+      <section className="w-full h-[515px] bg-[#ebebeb]" />
 
       {/* Задача + Процесс + Гипотезы */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">

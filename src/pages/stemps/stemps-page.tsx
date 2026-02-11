@@ -1,6 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router";
 import Footer from "@/components/footer";
+import PageHeader from "@/components/page-header";
 import { stempsData } from "./stemps-data";
 import {
   Carousel,
@@ -47,12 +46,17 @@ export default function StempsPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Helmet>
-        <title>STEMPS — корпоративный университет | Оксана Бакулина</title>
-        <meta name="description" content="Кейс STEMPS: образовательная онлайн-платформа для архитекторов, урбанистов и девелоперов. Продуктовый дизайн от исследования до релиза." />
-      </Helmet>
-      {/* Hero Image with Breadcrumbs Absolute */}
-      <section className="relative w-full h-[268px] bg-[var(--stemps-hero)]">
+      <PageHeader
+        title="STEMPS — корпоративный университет | Оксана Бакулина"
+        description="Кейс STEMPS: образовательная онлайн-платформа для архитекторов, урбанистов и девелоперов. Продуктовый дизайн от исследования до релиза."
+        breadcrumbs={[
+          { label: "О себе", to: "/" },
+          { label: "STEMPS" },
+        ]}
+      />
+
+      {/* Hero Image */}
+      <section className="w-full h-[268px] bg-[var(--stemps-hero)]">
         {heroImage ? (
           <img src={heroImage} alt="STEMPS — hero" className="w-full h-full object-cover" />
         ) : (
@@ -60,21 +64,6 @@ export default function StempsPage() {
             Hero STEMPS
           </div>
         )}
-
-        {/* Breadcrumbs Absolute Top with gradient */}
-        <div className="absolute top-0 left-0 right-0 h-[60px] bg-gradient-to-b from-white from-0% via-white/95 via-80% to-transparent pt-4">
-          <div className="w-full max-w-[1440px] mx-auto px-[25px]">
-            <div className="grid grid-cols-4">
-              <div className="col-start-1">
-                <div className="flex items-center gap-[10px] text-size-s">
-                  <Link to="/" className="text-neutral-900 hover:underline">О себе</Link>
-                  <span className="text-neutral-400">/</span>
-                  <span className="text-neutral-900">STEMPS</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* 4 Column Grid Container - max-w 1440px */}

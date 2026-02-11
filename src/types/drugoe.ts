@@ -1,9 +1,8 @@
 export interface DrugoeProject {
   title: string;
   titleMuted?: string;
-  darkBlock: {
-    height: number;
-  };
+  videoId: string;
+  images?: string[];
 }
 
 export interface DrugoeData {

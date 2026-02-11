@@ -1,31 +1,59 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router";
+import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
+import PageHeader from "@/components/page-header";
 import { drugoeData } from "./drugoe-data";
+
+function LazyVideo({ videoId }: { videoId: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "100px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ width: 691, height: 488 }}>
+      {visible && (
+        <iframe
+          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&background=1&t=0`}
+          width={691}
+          height={488}
+          allow="autoplay; fullscreen"
+          loading="lazy"
+          style={{ border: "none" }}
+        />
+      )}
+    </div>
+  );
+}
 
 export default function DrugoePage() {
   const { projects } = drugoeData;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Helmet>
-        <title>Другое | Оксана Бакулина</title>
-        <meta
-          name="description"
-          content="Учебные проекты. Портфолио продуктового дизайнера."
-        />
-      </Helmet>
-
-      {/* Breadcrumbs */}
-      <div className="w-full max-w-[1440px] mx-auto px-[24px] pt-[17px] pb-[17px]">
-        <div className="flex items-center gap-[10px] text-size-s">
-          <Link to="/" className="text-neutral-900 hover:underline">
-            О себе
-          </Link>
-          <span className="text-[rgba(51,51,51,0.06)]">/</span>
-          <span className="text-neutral-900">Другое</span>
-        </div>
-      </div>
+      <PageHeader
+        title="Другое | Оксана Бакулина"
+        description="Учебные проекты. Портфолио продуктового дизайнера."
+        breadcrumbs={[
+          { label: "О себе", to: "/" },
+          { label: "Другое" },
+        ]}
+      />
 
       {/* Projects */}
       {projects.map((project, index) => (
@@ -48,11 +76,26 @@ export default function DrugoePage() {
             </div>
           </div>
 
-          {/* Dark block — placeholder */}
-          <div
-            className="w-full bg-black"
-            style={{ height: `${project.darkBlock.height}px` }}
-          />
+          {/* Dark block with video */}
+          <div className="w-full bg-black py-[64px] flex justify-center">
+            <LazyVideo videoId={project.videoId} />
+          </div>
+
+          {/* Images */}
+          {project.images && (
+            <div className="w-full bg-black flex justify-center gap-[11px] pb-[64px]">
+              {project.images.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  width={340}
+                  height={196}
+                  alt=""
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )}
         </div>
       ))}
 

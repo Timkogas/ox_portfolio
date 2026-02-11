@@ -1,6 +1,5 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router";
 import Footer from "@/components/footer";
+import PageHeader from "@/components/page-header";
 import { bureauDushiData } from "./bureau-dushi-data";
 
 export default function BureauDushiPage() {
@@ -22,32 +21,22 @@ export default function BureauDushiPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Helmet>
-        <title>Бюро Души | Оксана Бакулина</title>
-        <meta
-          name="description"
-          content="Кейс Бюро Души — сервис психологической помощи. MVP, айдентика, продуктовый дизайн."
-        />
-      </Helmet>
+      <PageHeader
+        title="Бюро Души | Оксана Бакулина"
+        description="Кейс Бюро Души — сервис психологической помощи. MVP, айдентика, продуктовый дизайн."
+        breadcrumbs={[
+          { label: "О себе", to: "/" },
+          { label: "Бюро Души" },
+        ]}
+      />
 
-      {/* Hero Image with Breadcrumbs */}
-      <section className="relative w-full h-[268px]">
+      {/* Hero Image */}
+      <section className="w-full h-[268px]">
         <img
           src={heroImage}
           alt="Бюро Души — hero"
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-0 left-0 right-0 h-[60px] bg-gradient-to-b from-white from-0% via-white/95 via-80% to-transparent pt-4">
-          <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-            <div className="flex items-center gap-[10px] text-size-s">
-              <Link to="/" className="text-neutral-900 hover:underline">
-                О себе
-              </Link>
-              <span className="text-[rgba(51,51,51,0.06)]">/</span>
-              <span className="text-neutral-900">Бюро Души</span>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Project Info Grid */}

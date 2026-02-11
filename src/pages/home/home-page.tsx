@@ -1,16 +1,16 @@
-import { Helmet } from "react-helmet-async";
 import { homeData } from "./home-data";
 import Footer from "@/components/footer";
+import PageHeader from "@/components/page-header";
 
 export default function HomePage() {
   const { hero, links, projects } = homeData;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Helmet>
-        <title>Оксана Бакулина — продуктовый дизайнер</title>
-        <meta name="description" content="Продуктовый дизайнер с опытом 2+ года: EdTech, e-commerce, сложные интерфейсы." />
-      </Helmet>
+      <PageHeader
+        title="Оксана Бакулина — продуктовый дизайнер"
+        description="Продуктовый дизайнер с опытом 2+ года: EdTech, e-commerce, сложные интерфейсы."
+      />
       {/* Container with max-width 1390px and 25px side padding */}
       <div className="w-full max-w-[1390px] mx-auto px-[25px] pt-[100px] pb-[70px]">
         {/* Hero Section */}

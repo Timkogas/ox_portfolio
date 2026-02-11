@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router";
 import Footer from "@/components/footer";
+import PageHeader from "@/components/page-header";
 import { kasperskyData } from "./kaspersky-data";
 
 export default function KasperskyPage() {
@@ -19,32 +18,22 @@ export default function KasperskyPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <Helmet>
-        <title>Mobile Security by Kaspersky | Оксана Бакулина</title>
-        <meta
-          name="description"
-          content="Кейс Mobile Security by Kaspersky. Дипломная работа по продуктовому дизайну."
-        />
-      </Helmet>
+      <PageHeader
+        title="Mobile Security by Kaspersky | Оксана Бакулина"
+        description="Кейс Mobile Security by Kaspersky. Дипломная работа по продуктовому дизайну."
+        breadcrumbs={[
+          { label: "О себе", to: "/" },
+          { label: "Kaspersky" },
+        ]}
+      />
 
-      {/* Hero Image with Breadcrumbs */}
-      <section className="relative w-full h-[268px]">
+      {/* Hero Image */}
+      <section className="w-full h-[268px]">
         <img
           src={heroImage}
           alt="Kaspersky — hero"
           className="w-full h-full object-cover"
         />
-        <div className="absolute top-0 left-0 right-0 h-[60px] bg-gradient-to-b from-white from-0% via-white/95 via-80% to-transparent pt-4">
-          <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-            <div className="flex items-center gap-[10px] text-size-s">
-              <Link to="/" className="text-neutral-900 hover:underline">
-                О себе
-              </Link>
-              <span className="text-[rgba(51,51,51,0.06)]">/</span>
-              <span className="text-neutral-900">Kaspersky</span>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* Project Info Grid */}
