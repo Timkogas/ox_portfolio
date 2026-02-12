@@ -42,7 +42,7 @@ export default function StempsPage() {
 
     const interval = setInterval(() => {
       api.scrollNext();
-    }, 4000);
+    }, 10000);
 
     return () => {
       api.off("select", updateCurrent);
