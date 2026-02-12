@@ -38,7 +38,7 @@ export default function StempsKKPage() {
 
       {/* Hero — full-width background video (autoplay, no controls) */}
       <div className="w-full bg-black flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
-        <LazyVideo videoId={videoId} background eager />
+        <LazyVideo videoId={videoId} background />
       </div>
 
       {/* Задача + Процесс + Гипотезы */}

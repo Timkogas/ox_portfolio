@@ -324,7 +324,7 @@ export default function BureauDushiPage() {
       <section className="w-full bg-black">
         {/* Video */}
         <div className="flex justify-center py-[44px] max-lg:pt-[24px] max-lg:pb-[54px] px-[24px]">
-          <LazyVideo videoId={darkBlock.videoId} background eager />
+          <LazyVideo videoId={darkBlock.videoId} background />
         </div>
 
         {/* Phone screenshots */}

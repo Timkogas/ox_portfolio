@@ -40,7 +40,7 @@ export default function DrugoePage() {
 
           {/* Dark block with video */}
           <div className="w-full bg-black py-[64px] max-lg:py-[24px] flex justify-center px-[24px]">
-            <LazyVideo videoId={project.videoId} aspectRatio="691/488" className="w-full max-w-[691px]" background eager={index === 0} />
+            <LazyVideo videoId={project.videoId} aspectRatio="691/488" className="w-full max-w-[691px]" background />
           </div>
 
           {/* Images */}
