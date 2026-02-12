@@ -41,6 +41,7 @@ export const kasperskyData: KasperskyData = {
           position: { x: 30, y: 10 },
           width: 8,
         },
+        mobileMarker: { x: 10, y: 10 },
       },
       {
         title: "Гипотеза №2",
@@ -54,6 +55,7 @@ export const kasperskyData: KasperskyData = {
           position: { x: 24, y: 35 },
           width: 10,
         },
+        mobileMarker: { x: 5, y: 40 },
       },
       {
         title: "Гипотеза №3",
@@ -67,6 +69,7 @@ export const kasperskyData: KasperskyData = {
           position: { x: 25.5, y: 65 },
           width: 6,
         },
+        mobileMarker: { x: 22, y: 66 },
       },
       {
         title: "Гипотеза №4",
@@ -80,6 +83,7 @@ export const kasperskyData: KasperskyData = {
           position: { x: 63, y: 22 },
           width: 10,
         },
+        mobileMarker: { x: 95, y: 24 },
       },
       {
         title: "Гипотеза №5",
@@ -93,6 +97,7 @@ export const kasperskyData: KasperskyData = {
           position: { x: 49.5, y: 50 },
           width: 16,
         },
+        mobileMarker: { x: 70, y: 56 },
       },
     ],
     caption: "Продолжение лонгрида из функций",

@@ -17,6 +17,7 @@ export interface KasperskyHypothesis {
     position: { x: number; y: number };
     width?: number;
   };
+  mobileMarker?: { x: number; y: number };
 }
 
 export interface KasperskyDarkSection {

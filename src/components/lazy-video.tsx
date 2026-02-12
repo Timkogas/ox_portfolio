@@ -42,7 +42,7 @@ export default function LazyVideo({
   }, [eager]);
 
   const params = background
-    ? "autoplay=1&muted=1&loop=1&controls=0&t=0&quality=auto&preload=auto"
+    ? "autoplay=1&muted=1&loop=1&controls=0&t=0&quality=auto&preload=auto&playsinline=1"
     : "quality=auto&preload=auto";
 
   return (
@@ -55,7 +55,7 @@ export default function LazyVideo({
         <iframe
           src={`https://kinescope.io/embed/${videoId}?${params}`}
           className={iframeClassName}
-          allow="autoplay; fullscreen; encrypted-media"
+          allow="autoplay *; fullscreen; encrypted-media"
           allowFullScreen
           style={{ border: "none", ...iframeStyle }}
         />

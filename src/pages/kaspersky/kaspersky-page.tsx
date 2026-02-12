@@ -166,52 +166,90 @@ export default function KasperskyPage() {
           )}
         </div>
 
-        {/* Mobile layout — stacked cards, no arrows */}
+        {/* Mobile layout — image with markers, caption, then hypothesis cards */}
         <div className="hidden max-lg:flex flex-col gap-4">
-          <div className="relative">
-            <img
-              src={hypotheses.image}
-              alt="Анализ интерфейса приложения"
-              loading="lazy"
-              className="w-full h-auto"
-            />
-            {!expanded && (
-              <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-b from-transparent via-white/70 to-white transition-opacity duration-300" />
-            )}
-          </div>
-          {hypotheses.items.map((h, i) => (
-            <div
-              key={i}
-              className="bg-kaspersky-card-bg rounded-[10px] p-[16px] flex flex-col gap-[10px]"
-            >
-              <p className="text-[12px] font-medium text-neutral-900 leading-[1.2]">
-                {h.title}
-              </p>
-              <p className="text-[14px] text-neutral-900 leading-[1.2]">
-                {h.text}
-              </p>
+          {/* Clipping wrapper — max-height animates, overflow clips */}
+          <div
+            className="overflow-hidden transition-[max-height] duration-500"
+            style={{ maxHeight: expanded ? "2000px" : "360px" }}
+          >
+            {/* Inner relative — sized by image, markers stay in place */}
+            <div className="relative">
+              <img
+                src={hypotheses.image}
+                alt="Анализ интерфейса приложения"
+                loading="lazy"
+                className="w-full h-auto"
+              />
+              {hypotheses.items.map((h, i) =>
+                h.mobileMarker ? (
+                  <span
+                    key={i}
+                    className="absolute w-[20px] h-[20px] rounded-full bg-neutral-900 text-white text-[11px] font-medium leading-none flex items-center justify-center"
+                    style={{
+                      left: `${h.mobileMarker.x}%`,
+                      top: `${h.mobileMarker.y}%`,
+                      transform: "translate(-50%, -50%)",
+                    }}
+                  >
+                    {i + 1}
+                  </span>
+                ) : null,
+              )}
             </div>
-          ))}
+          </div>
+          {/* Gradient overlay — outside clipping wrapper, pinned to its bottom edge */}
+          {!expanded && (
+            <div className="relative -mt-[180px] h-[180px] bg-gradient-to-b from-transparent via-white/70 to-white pointer-events-none" />
+          )}
+
+          {/* Caption — toggle (on mobile, under the image) */}
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="w-full text-center text-[14px] text-kaspersky-muted-text py-[8px] cursor-pointer hover:opacity-70 transition-opacity"
+          >
+            &uarr;
+            <br />
+            {hypotheses.caption}
+          </button>
+
+          {/* Hypothesis cards — gray blocks */}
+          <div className="flex flex-col gap-[12px]">
+            {hypotheses.items.map((h, i) => (
+              <div
+                key={i}
+                className="bg-kaspersky-card-bg rounded-[10px] p-[16px] flex flex-col gap-[10px]"
+              >
+                <p className="text-[12px] font-medium text-neutral-900 leading-[1.2]">
+                  {h.title}
+                </p>
+                <p className="text-[14px] text-neutral-900 leading-[1.2]">
+                  {h.text}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
 
-      {/* Caption + Conclusion — overlaps phones when collapsed */}
+      {/* Caption + Conclusion — overlaps phones when collapsed (desktop only for caption) */}
       <div
-        className={`w-full max-w-[1440px] mx-auto px-[24px] relative z-10 bg-white transition-[margin] duration-500 ${expanded ? "mt-0" : "-mt-[250px]"}`}
+        className={`w-full max-w-[1440px] mx-auto px-[24px] relative z-10 bg-white transition-[margin] duration-500 ${expanded ? "mt-0 max-lg:mt-0" : "-mt-[250px] max-lg:mt-0"}`}
       >
-        {/* Caption — toggle gradient */}
+        {/* Caption — toggle gradient (desktop only) */}
         <button
           type="button"
           onClick={() => setExpanded(!expanded)}
-          className="w-full text-center text-[14px] text-kaspersky-muted-text py-[24px] cursor-pointer hover:opacity-70 transition-opacity"
+          className="w-full text-center text-[14px] text-kaspersky-muted-text py-[24px] cursor-pointer hover:opacity-70 transition-opacity max-lg:hidden"
         >
           &uarr;
           <br />
           {hypotheses.caption}
         </button>
 
-        <div className="grid grid-cols-4 max-lg:grid-cols-1">
+        <div className="grid grid-cols-4 pb-[64px] max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
             <p className="text-size-m text-neutral-900">
               {hypotheses.conclusion}
@@ -224,7 +262,7 @@ export default function KasperskyPage() {
       {/* Dark Sections */}
       {darkSections.map((section, index) => (
         <div key={index}>
-          <section className="w-full bg-kaspersky-dark-bg pt-[64px] max-lg:pt-[32px] min-h-[400px] max-lg:min-h-0 relative z-20">
+          <section className={`w-full bg-kaspersky-dark-bg min-h-[400px] max-lg:min-h-0 relative z-20 ${section.videoId && !section.innerDescription ? "" : "pt-[64px] max-lg:pt-[32px]"}`}>
             <div className="w-full max-w-[1440px] mx-auto px-[24px]">
               <div className="grid grid-cols-4 max-lg:grid-cols-1">
                 <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[36px]">
@@ -248,7 +286,7 @@ export default function KasperskyPage() {
                       <LazyVideo
                         videoId={section.videoId}
                         aspectRatio="9/19.5"
-                        className="w-full overflow-hidden"
+                        className="w-full max-w-[260px] overflow-hidden"
                         iframeClassName="block"
                         iframeStyle={{ width: "300%", height: "100%", marginLeft: "-100%" }}
                         background
