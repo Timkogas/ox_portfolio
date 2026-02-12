@@ -290,6 +290,7 @@ export default function KasperskyPage() {
                         iframeClassName="block"
                         iframeStyle={{ width: "300%", height: "100%", marginLeft: "-100%" }}
                         background
+                        eager
                       />
                     </div>
                   )}
@@ -307,6 +308,7 @@ export default function KasperskyPage() {
                       iframeClassName="block"
                       iframeStyle={{ width: "300%", height: "100%", marginLeft: "-100%" }}
                       background
+                      eager
                     />
                   ))}
                 </div>
