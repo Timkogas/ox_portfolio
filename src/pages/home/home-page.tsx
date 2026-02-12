@@ -111,7 +111,7 @@ export default function HomePage() {
                           loading="lazy"
                           className={`absolute top-0 bottom-0 h-full object-contain ${
                             img.position === "center"
-                              ? "left-1/2 -translate-x-1/2"
+                              ? "right-[6px] max-lg:right-auto max-lg:left-[calc(50%-38px)] max-lg:-translate-x-1/2"
                               : img.position === "left"
                                 ? "left-0"
                                 : "right-[8px]"

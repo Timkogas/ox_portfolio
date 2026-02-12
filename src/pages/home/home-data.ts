@@ -18,7 +18,7 @@ export const homeData: HomeData = {
       id: "stemps",
       title: "STEMPS — корпоративный университет",
       images: [
-        { src: "/images/home/projects/stemps-.png", position: "right" },
+        { src: "/images/home/projects/stemps-.png", position: "center" },
       ],
       href: "/stemps",
     },
@@ -26,7 +26,7 @@ export const homeData: HomeData = {
       id: "bureau-dushi",
       title: "Бюро души — сервис психологической помощи",
       images: [
-        { src: "/images/home/projects/bureau-dushi-.png", position: "right" },
+        { src: "/images/home/projects/bureau-dushi-.png", position: "center" },
       ],
       href: "/bureau-dushi",
     },
