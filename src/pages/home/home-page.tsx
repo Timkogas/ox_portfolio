@@ -39,7 +39,7 @@ export default function HomePage() {
                 <h1 className="text-size-m mb-6 max-w-[500px]">
                   {hero.name}
                 </h1>
-                <p className="text-size-s text-neutral-900 max-w-[500px] whitespace-pre-line">
+                <p className="text-size-s text-neutral-900 max-w-[510px] whitespace-pre-line">
                   {hero.description}
                 </p>
               </div>
