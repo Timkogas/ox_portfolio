@@ -1,44 +1,7 @@
-import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
+import LazyVideo from "@/components/lazy-video";
 import { drugoeData } from "./drugoe-data";
-
-function LazyVideo({ videoId }: { videoId: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "100px" },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="w-full max-w-[691px]" style={{ aspectRatio: "691/488" }}>
-      {visible && (
-        <iframe
-          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
-          className="w-full h-full"
-          allow="autoplay; fullscreen"
-          loading="lazy"
-          style={{ border: "none" }}
-        />
-      )}
-    </div>
-  );
-}
 
 export default function DrugoePage() {
   const { projects } = drugoeData;
@@ -77,7 +40,7 @@ export default function DrugoePage() {
 
           {/* Dark block with video */}
           <div className="w-full bg-black py-[64px] max-lg:py-[24px] flex justify-center px-[24px]">
-            <LazyVideo videoId={project.videoId} />
+            <LazyVideo videoId={project.videoId} aspectRatio="691/488" className="w-full max-w-[691px]" background eager={index === 0} />
           </div>
 
           {/* Images */}

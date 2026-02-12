@@ -2,6 +2,7 @@ import { useState } from "react";
 import { homeData } from "./home-data";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
+import { prefetchVideos } from "@/lib/prefetch-video";
 
 export default function HomePage() {
   const { hero, links, projects } = homeData;
@@ -96,6 +97,8 @@ export default function HomePage() {
                 key={project.id}
                 href={project.href}
                 className="group block no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
+                onMouseEnter={prefetchVideos}
+                onTouchStart={prefetchVideos}
               >
                 <div className="relative bg-black h-[338px] overflow-hidden max-lg:h-[250px] w-full">
                   {project.images ? (

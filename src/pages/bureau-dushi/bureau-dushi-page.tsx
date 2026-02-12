@@ -1,42 +1,7 @@
-import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
+import LazyVideo from "@/components/lazy-video";
 import { bureauDushiData } from "./bureau-dushi-data";
-
-function LazyVideo({ videoId }: { videoId: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "100px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="w-full max-w-[690px]" style={{ aspectRatio: "690/398" }}>
-      {visible && (
-        <iframe
-          src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
-          className="w-full h-full"
-          allow="autoplay; fullscreen; encrypted-media"
-          loading="lazy"
-          style={{ border: "none" }}
-        />
-      )}
-    </div>
-  );
-}
 
 export default function BureauDushiPage() {
   const {
@@ -146,7 +111,7 @@ export default function BureauDushiPage() {
                   src={block.image}
                   alt={block.title}
                   loading="lazy"
-                  className={`w-full h-auto ${i === 0 ? "" : "-mt-5"}`}
+                  className={`w-full h-auto max-lg:px-5 ${i === 0 ? "" : "-mt-5 max-lg:mt-0"}`}
                 />
               </div>
               {i < structure.blocks.length - 1 && (
@@ -166,7 +131,7 @@ export default function BureauDushiPage() {
 
       {/* After structure text */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-        <div className="grid grid-cols-4 py-[64px] max-lg:grid-cols-1">
+        <div className="grid grid-cols-4 py-[64px] max-lg:pb-[24px] max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
             <p className="text-size-m text-neutral-900">
               {afterStructure}
@@ -191,7 +156,7 @@ export default function BureauDushiPage() {
 
       {/* After key pages text */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-        <div className="grid grid-cols-4 py-[64px] max-lg:grid-cols-1">
+        <div className="grid grid-cols-4 py-[64px] max-lg:pb-[24px] max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
             <p className="text-size-m text-neutral-900">
               {afterKeyPages}
@@ -203,9 +168,9 @@ export default function BureauDushiPage() {
       {/* Problem / Solution cards */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px] pb-[64px]">
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
-          <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[24px]">
+          <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[24px] max-lg:gap-[50px]">
             {problemSolutions.map((ps, i) => (
-              <div key={i} className="flex items-stretch gap-[16px] max-lg:flex-col">
+              <div key={i} className="flex items-stretch gap-[16px] max-lg:flex-col max-lg:gap-[24px]">
                 <div className="flex-1 bg-[#f3f3f3] rounded-[10px] p-[16px]">
                   <p className="text-size-sm text-neutral-900 font-medium">
                     Проблема / запрос
@@ -292,8 +257,8 @@ export default function BureauDushiPage() {
       {/* Dark block — video + phone screens */}
       <section className="w-full bg-black">
         {/* Video */}
-        <div className="flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
-          <LazyVideo videoId={darkBlock.videoId} />
+        <div className="flex justify-center py-[44px] max-lg:pt-[24px] max-lg:pb-[54px] px-[24px]">
+          <LazyVideo videoId={darkBlock.videoId} background eager />
         </div>
 
         {/* Phone screenshots */}

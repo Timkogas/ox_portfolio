@@ -1,87 +1,7 @@
-import { useRef, useState, useEffect } from "react";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
+import LazyVideo from "@/components/lazy-video";
 import { stempsKKData } from "./stemps-kk-data";
-
-function HeroVideo({ videoId }: { videoId: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "100px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="w-full bg-black flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
-      <div className="w-full max-w-[690px]" style={{ aspectRatio: "690/398" }}>
-        {visible && (
-          <iframe
-            src={`https://kinescope.io/embed/${videoId}?autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p`}
-            className="w-full h-full"
-            allow="autoplay; fullscreen; encrypted-media"
-            loading="lazy"
-            style={{ border: "none" }}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
-function LazyVideo({ videoId, background = false }: { videoId: string; background?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "100px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const params = background
-    ? "autoplay=1&muted=1&loop=1&controls=0&t=0&quality=1080p"
-    : "quality=1080p";
-  const src = `https://kinescope.io/embed/${videoId}?${params}`;
-
-  return (
-    <div ref={ref} className="w-full bg-[#1d1d22] flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
-      <div className="w-full max-w-[690px]" style={{ aspectRatio: "690/398" }}>
-        {visible && (
-          <iframe
-            src={src}
-            className="w-full h-full"
-            allow="autoplay; fullscreen; encrypted-media"
-            allowFullScreen
-            loading="lazy"
-            style={{ border: "none" }}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
 
 export default function StempsKKPage() {
   const {
@@ -117,7 +37,9 @@ export default function StempsKKPage() {
       />
 
       {/* Hero — full-width background video (autoplay, no controls) */}
-      <HeroVideo videoId={videoId} />
+      <div className="w-full bg-black flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
+        <LazyVideo videoId={videoId} background eager />
+      </div>
 
       {/* Задача + Процесс + Гипотезы */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
@@ -353,7 +275,9 @@ export default function StempsKKPage() {
       </div>
 
       {/* Video with player controls */}
-      <LazyVideo videoId="4vGeVCoA4JH3WE9JUJAufG" />
+      <div className="w-full bg-black flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
+        <LazyVideo videoId="4vGeVCoA4JH3WE9JUJAufG" />
+      </div>
 
       {/* Детали label */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
