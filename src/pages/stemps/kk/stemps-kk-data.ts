@@ -52,7 +52,7 @@ export const stempsKKData: StempsKKData = {
     {
       text: "Быстрый доступ к\u00A0предпросмотру",
       position: { x: 4, y: 10 },
-      mobileMarker: { x: 18, y: 5 },
+      mobileMarker: { x: 13, y: -1 },
       arrow: {
         image: "/images/stemps/kk/arrow-1.svg",
         position: { x: 21.2, y: 5.7 },
@@ -63,7 +63,7 @@ export const stempsKKData: StempsKKData = {
       text: "Гибкая модель из\u00A0шаблонов с\u00A0неограниченной вложенностью",
       position: { x: 4, y: 47 },
       width: 17,
-      mobileMarker: { x: 16, y: 68 },
+      mobileMarker: { x: 17, y: 39 },
       arrow: {
         image: "/images/stemps/kk/arrow-2.svg",
         position: { x: 21, y: 38},
@@ -74,7 +74,7 @@ export const stempsKKData: StempsKKData = {
       text: "Тип блока, который предлагает альтернативную верстку",
       position: { x: 81.2, y: 27.5},
       width: 16,
-      mobileMarker: { x: 91, y: 28 },
+      mobileMarker: { x: 95, y: 25 },
       arrow: {
         image: "/images/stemps/kk/arrow-3.svg",
         position: { x: 71.1, y: 23.5 },
@@ -85,7 +85,7 @@ export const stempsKKData: StempsKKData = {
       text: "Быстрая панель шаблонов для\u00A0сборки контента",
       position: { x: 79, y: 78 },
       width: 16,
-      mobileMarker: { x: 45, y: 83 },
+      mobileMarker: { x: 90, y: 76 },
       arrow: {
         image: "/images/stemps/kk/arrow-4.svg",
         position: { x: 66.4, y: 69.5 },
@@ -96,7 +96,7 @@ export const stempsKKData: StempsKKData = {
       text: "Актуальная и\u00A0прошлые версии хранятся внутри курса",
       position: { x: 50.1, y: 118 },
       width: 16,
-      mobileMarker: { x: 42, y: 82, target: "panel" },
+      mobileMarker: { x: 92, y: 82, target: "panel" },
       arrow: {
         image: "/images/stemps/kk/arrow-5.svg",
         position: { x: 37, y: 109 },

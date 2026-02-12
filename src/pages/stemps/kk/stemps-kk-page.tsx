@@ -111,7 +111,7 @@ export default function StempsKKPage() {
         description="Кейс Конструктор курсов STEMPS — раздел для запуска обучения под задачи бизнеса. Продуктовый дизайн от исследования до релиза."
         breadcrumbs={[
           { label: "О себе", to: "/" },
-          { label: "Проект", to: "/stemps" },
+          { label: "STEMPS", to: "/stemps" },
           { label: "Конструктор курсов" },
         ]}
       />

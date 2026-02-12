@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { homeData } from "./home-data";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 
 export default function HomePage() {
   const { hero, links, projects } = homeData;
+  const [copied, setCopied] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -43,18 +45,44 @@ export default function HomePage() {
 
               {/* Bottom links */}
               <div className="flex gap-[100px] max-lg:gap-8 max-lg:flex-wrap">
-                {links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-semibold text-neutral-900 underline hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${link.label} (откроется в новой вкладке)`}
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {links.map((link) => {
+                  const isEmail = link.href.startsWith("mailto:");
+                  if (isEmail) {
+                    const email = link.href.replace("mailto:", "");
+                    return (
+                      <span key={link.label} className="relative">
+                        {copied && (
+                          <span className="absolute -top-1 left-1/2 text-xs text-neutral-500 animate-toast-up pointer-events-none whitespace-nowrap">
+                            Скопировано
+                          </span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText(email);
+                            setCopied(true);
+                            setTimeout(() => setCopied(false), 1200);
+                          }}
+                          className="text-semibold text-neutral-900 underline hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 cursor-pointer"
+                        >
+                          {link.label}
+                        </button>
+                      </span>
+                    );
+                  }
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      className="text-semibold text-neutral-900 underline hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${link.label} (откроется в новой вкладке)`}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>

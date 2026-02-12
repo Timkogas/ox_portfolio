@@ -40,8 +40,13 @@ export default function StempsPage() {
     updateCurrent();
     api.on("select", updateCurrent);
 
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 4000);
+
     return () => {
       api.off("select", updateCurrent);
+      clearInterval(interval);
     };
   }, [api]);
 
@@ -57,9 +62,9 @@ export default function StempsPage() {
       />
 
       {/* Hero Image */}
-      <section className="w-full h-[268px] bg-[var(--stemps-hero)]">
+      <section className="w-full h-[268px] max-lg:h-auto bg-[var(--stemps-hero)]">
         {heroImage ? (
-          <img src={heroImage} alt="STEMPS — hero" className="w-full h-full object-cover" />
+          <img src={heroImage} alt="STEMPS — hero" className="w-full h-full object-cover max-lg:h-auto max-lg:object-contain" />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-white text-size-m">
             Hero STEMPS
@@ -128,7 +133,7 @@ export default function StempsPage() {
                       <p className="text-semibold text-neutral-900 text-[14px]">
                         {pain.title}
                       </p>
-                      <p className={`text-[12px] text-neutral-900 leading-[1.2]${index === 0 ? " max-w-[170px]" : ""}`}>
+                      <p className={`text-[12px] text-neutral-900 leading-[1.2]${index === 0 ? " max-w-[170px] max-lg:max-w-none" : ""}`}>
                         <span className="font-semibold">Проблема бизнеса:</span> {pain.description}
                       </p>
                     </div>
@@ -218,7 +223,7 @@ export default function StempsPage() {
               </div>
 
               {/* Mobile layout — card → arrow → badges, stacked */}
-              <div className="hidden max-lg:flex flex-col gap-[16px]">
+              <div className="hidden max-lg:flex flex-col gap-[50px]">
                 {clients.types.map((client, index) => (
                   <div key={index} className="flex flex-col items-center gap-[12px]">
                     <div className="bg-[var(--stemps-card-bg)] p-[20px] rounded-[14px] w-full">
@@ -254,50 +259,65 @@ export default function StempsPage() {
             </section>
 
             {/* Laptops Section */}
-            <section className="space-y-[36px]">
+            <section className="space-y-[36px] max-lg:space-y-[48px]">
               {laptops.map((laptop, index) => (
                 <div key={index} className="space-y-4">
                   {index === 0 ? (
-                    <Link
-                      to="/stemps/konstruktor-kursov"
-                      className="group relative block bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden"
-                    >
-                      {laptop.image ? (
-                        <img
-                          src={laptop.image}
-                          alt={laptop.title}
-                          loading="lazy"
-                          className="w-full h-auto object-contain"
-                        />
-                      ) : (
-                        <div className="text-neutral-400 text-size-s">
-                          Ноутбук {index + 1}: {laptop.title}
+                    <div className="relative">
+                      <Link
+                        to="/stemps/konstruktor-kursov"
+                        className="group relative block bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden"
+                      >
+                        {laptop.image ? (
+                          <img
+                            src={laptop.image}
+                            alt={laptop.title}
+                            loading="lazy"
+                            className="w-full h-auto object-contain"
+                          />
+                        ) : (
+                          <div className="text-neutral-400 text-size-s">
+                            Ноутбук {index + 1}: {laptop.title}
+                          </div>
+                        )}
+                        <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity max-lg:hidden">
+                          <span className="font-medium text-[14px] text-neutral-900">
+                            Подробнее &rarr;
+                          </span>
                         </div>
-                      )}
-                      <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="font-medium text-[14px] text-neutral-900">
-                          Подробнее &rarr;
-                        </span>
-                      </div>
-                    </Link>
+                      </Link>
+                      <Link
+                        to="/stemps/konstruktor-kursov"
+                        className="hidden max-lg:flex absolute bottom-[12px] right-[12px] w-[44px] h-[44px] items-center justify-center bg-white/80 backdrop-blur-[6px] rounded-[12px]"
+                      >
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1L9 9M9 9V2M9 9H2" stroke="#171717" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </Link>
+                    </div>
                   ) : (
-                    <div className="group relative bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden flex items-center justify-center">
-                      {laptop.image ? (
-                        <img
-                          src={laptop.image}
-                          alt={laptop.title}
-                          loading="lazy"
-                          className="w-full h-auto object-contain"
-                        />
-                      ) : (
-                        <div className="text-neutral-400 text-size-s">
-                          Ноутбук {index + 1}: {laptop.title}
+                    <div className="relative">
+                      <div className="group relative bg-[var(--stemps-laptop-bg)] rounded-[10px] py-[60px] px-[105px] max-lg:py-[20px] max-lg:px-[20px] overflow-hidden flex items-center justify-center">
+                        {laptop.image ? (
+                          <img
+                            src={laptop.image}
+                            alt={laptop.title}
+                            loading="lazy"
+                            className="w-full h-auto object-contain"
+                          />
+                        ) : (
+                          <div className="text-neutral-400 text-size-s">
+                            Ноутбук {index + 1}: {laptop.title}
+                          </div>
+                        )}
+                        <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity max-lg:hidden">
+                          <span className="font-medium text-[14px] text-neutral-900">
+                            В разработке
+                          </span>
                         </div>
-                      )}
-                      <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="font-medium text-[14px] text-neutral-900">
-                          В разработке
-                        </span>
+                      </div>
+                      <div className="hidden max-lg:flex absolute bottom-[12px] w-34 right-[12px] h-[48px] items-center justify-center px-[20px] bg-white/40 backdrop-blur-[6px] rounded-[12px]">
+                        <span className="font-medium text-[14px] text-neutral-500">В разработке</span>
                       </div>
                     </div>
                   )}

@@ -164,6 +164,21 @@ body {
   }
 }
 
+@keyframes toast-up {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+@utility animate-toast-up {
+  animation: toast-up 1.2s ease-out forwards;
+}
+
 /* Typography Styles from Figma */
 @layer utilities {
   .text-size-m {
