@@ -35,7 +35,7 @@ export default function LazyVideo({
           observer.disconnect();
         }
       },
-      { rootMargin: "600px" },
+      { rootMargin: "150px" },
     );
     observer.observe(el);
     return () => observer.disconnect();
