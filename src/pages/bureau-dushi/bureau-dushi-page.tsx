@@ -1,9 +1,34 @@
+import { useState, useEffect } from "react";
+import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 import LazyVideo from "@/components/lazy-video";
 import { bureauDushiData } from "./bureau-dushi-data";
 
+function LightboxControls({ onClose }: { onClose: () => void }) {
+  const { zoomIn, zoomOut } = useControls();
+  return (
+    <div className="absolute top-6 right-6 z-50 flex gap-2">
+      <button type="button" onClick={() => zoomOut()} className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white text-xl cursor-pointer">&minus;</button>
+      <button type="button" onClick={() => zoomIn()} className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white text-xl cursor-pointer">+</button>
+      <button type="button" onClick={onClose} className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors text-white text-xl cursor-pointer">&times;</button>
+    </div>
+  );
+}
+
 export default function BureauDushiPage() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
+
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [lightboxOpen]);
+
   const {
     heroImage,
     projectInfo,
@@ -32,11 +57,11 @@ export default function BureauDushiPage() {
       />
 
       {/* Hero Image */}
-      <section className="w-full h-[268px]">
+      <section className="w-full h-[268px] max-lg:h-auto bg-black">
         <img
           src={heroImage}
           alt="Бюро Души — hero"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover max-lg:h-auto max-lg:object-contain"
         />
       </section>
 
@@ -131,7 +156,7 @@ export default function BureauDushiPage() {
 
       {/* After structure text */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-        <div className="grid grid-cols-4 py-[64px] max-lg:pb-[24px] max-lg:grid-cols-1">
+        <div className="grid grid-cols-4 pt-[64px] pb-[24px] max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
             <p className="text-size-m text-neutral-900">
               {afterStructure}
@@ -144,19 +169,60 @@ export default function BureauDushiPage() {
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
-            <img
-              src={keyPagesImage}
-              alt="Архитектура и ключевые страницы"
-              loading="lazy"
-              className="w-full h-auto"
-            />
+            <button
+              type="button"
+              onClick={() => setLightboxOpen(true)}
+              className="group relative block w-full rounded-[10px] overflow-hidden cursor-pointer"
+            >
+              <img
+                src={keyPagesImage}
+                alt="Архитектура и ключевые страницы"
+                loading="lazy"
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-[rgba(243,243,243,0.8)] backdrop-blur-[6px] opacity-0 group-hover:opacity-100 transition-opacity max-lg:hidden">
+                <span className="font-medium text-[14px] text-neutral-900">
+                  Посмотреть
+                </span>
+              </div>
+            </button>
           </div>
         </div>
       </div>
 
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm overflow-hidden"
+          onClick={(e) => { if (e.target === e.currentTarget) setLightboxOpen(false); }}
+        >
+          <TransformWrapper
+            initialScale={isMobile ? 3 : 1.5}
+            minScale={0.5}
+            maxScale={8}
+            centerOnInit
+            wheel={{ step: 0.15 }}
+            panning={{ velocityDisabled: false }}
+          >
+            <LightboxControls onClose={() => setLightboxOpen(false)} />
+            <TransformComponent
+              wrapperStyle={{ width: "100%", height: "100vh" }}
+              contentStyle={{ width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}
+            >
+              <img
+                src="/images/bureau-dushi/key-pages-full.svg"
+                alt="Полная схема архитектуры"
+                className="max-h-[90vh] w-auto"
+                draggable={false}
+              />
+            </TransformComponent>
+          </TransformWrapper>
+        </div>
+      )}
+
       {/* After key pages text */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-        <div className="grid grid-cols-4 py-[64px] max-lg:pb-[24px] max-lg:grid-cols-1">
+        <div className="grid grid-cols-4 pt-[64px] pb-[24px] max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
             <p className="text-size-m text-neutral-900">
               {afterKeyPages}

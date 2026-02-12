@@ -2,7 +2,7 @@ import { useState } from "react";
 import { homeData } from "./home-data";
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
-import { prefetchVideos } from "@/lib/prefetch-video";
+
 
 export default function HomePage() {
   const { hero, links, projects } = homeData;
@@ -45,7 +45,7 @@ export default function HomePage() {
               </div>
 
               {/* Bottom links */}
-              <div className="flex gap-[100px] max-lg:gap-8 max-lg:flex-wrap">
+              <div className="flex items-baseline gap-[100px] max-lg:gap-8 max-lg:flex-wrap">
                 {links.map((link) => {
                   const isEmail = link.href.startsWith("mailto:");
                   if (isEmail) {
@@ -97,8 +97,6 @@ export default function HomePage() {
                 key={project.id}
                 href={project.href}
                 className="group block no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"
-                onMouseEnter={prefetchVideos}
-                onTouchStart={prefetchVideos}
               >
                 <div className="relative bg-black h-[338px] overflow-hidden max-lg:h-[250px] w-full">
                   {project.images ? (

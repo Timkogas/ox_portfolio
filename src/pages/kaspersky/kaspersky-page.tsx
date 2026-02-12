@@ -29,11 +29,11 @@ export default function KasperskyPage() {
       />
 
       {/* Hero Image */}
-      <section className="w-full h-[268px]">
+      <section className="w-full h-[268px] max-lg:h-auto bg-black">
         <img
           src={heroImage}
           alt="Kaspersky — hero"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover max-lg:h-auto max-lg:object-contain"
         />
       </section>
 
@@ -209,7 +209,7 @@ export default function KasperskyPage() {
             onClick={() => setExpanded(!expanded)}
             className="w-full text-center text-[14px] text-kaspersky-muted-text py-[8px] cursor-pointer hover:opacity-70 transition-opacity"
           >
-            &uarr;
+            {expanded ? "\u2191" : "\u2193"}
             <br />
             {hypotheses.caption}
           </button>
@@ -244,12 +244,12 @@ export default function KasperskyPage() {
           onClick={() => setExpanded(!expanded)}
           className="w-full text-center text-[14px] text-kaspersky-muted-text py-[24px] cursor-pointer hover:opacity-70 transition-opacity max-lg:hidden"
         >
-          &uarr;
+          {expanded ? "\u2191" : "\u2193"}
           <br />
           {hypotheses.caption}
         </button>
 
-        <div className="grid grid-cols-4 pb-[64px] max-lg:grid-cols-1">
+        <div className="grid grid-cols-4 pt-[48px] pb-[32px] max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1">
             <p className="text-size-m text-neutral-900">
               {hypotheses.conclusion}
@@ -298,19 +298,21 @@ export default function KasperskyPage() {
               </div>
 
               {section.videoIds && (
-                <div className="flex justify-center gap-[20px] max-lg:gap-[10px] pt-[36px] pb-[64px] max-lg:pb-[24px] px-[24px]">
-                  {section.videoIds.map((vid, i) => (
-                    <LazyVideo
-                      key={i}
-                      videoId={vid}
-                      aspectRatio="9/19.5"
-                      className="flex-1 overflow-hidden rounded-[20px] max-lg:rounded-[10px] bg-kaspersky-dark-bg"
-                      iframeClassName="block"
-                      iframeStyle={{ width: "300%", height: "100%", marginLeft: "-100%" }}
-                      background
-                      eager
-                    />
-                  ))}
+                <div className="flex justify-center pt-[36px] pb-[64px] max-lg:pb-[24px]">
+                  <div className="flex gap-[20px] max-lg:gap-[10px] w-full max-w-[690px]">
+                    {section.videoIds.map((vid, i) => (
+                      <LazyVideo
+                        key={i}
+                        videoId={vid}
+                        aspectRatio="9/19.5"
+                        className="flex-1 overflow-hidden rounded-[20px] max-lg:rounded-[10px] bg-kaspersky-dark-bg"
+                        iframeClassName="block"
+                        iframeStyle={{ width: "300%", height: "100%", marginLeft: "-100%" }}
+                        background
+                        eager
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
