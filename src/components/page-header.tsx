@@ -23,6 +23,8 @@ export default function PageHeader({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
       </Helmet>
       {breadcrumbs && breadcrumbs.length > 0 && (
         <div className="sticky top-0 z-50 h-[calc(60px+env(safe-area-inset-top))] bg-gradient-to-b from-white from-0% via-white/95 via-80% to-transparent pt-[calc(16px+env(safe-area-inset-top))]">
