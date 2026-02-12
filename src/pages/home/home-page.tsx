@@ -112,7 +112,7 @@ export default function HomePage() {
                               ? "right-[6px] max-lg:right-auto max-lg:left-[calc(50%-38px)] max-lg:-translate-x-1/2"
                               : img.position === "left"
                                 ? "left-0"
-                                : "right-[8px]"
+                                : "right-[8px] max-lg:right-auto max-lg:left-[-10%] max-lg:w-[110%] max-lg:h-full max-lg:object-contain"
                           }`}
                         />
                       ))}
