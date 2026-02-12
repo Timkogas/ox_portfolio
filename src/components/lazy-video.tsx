@@ -42,8 +42,8 @@ export default function LazyVideo({
   }, [eager]);
 
   const params = background
-    ? "background=1&quality=480&preload=1&playsinline=1"
-    : "quality=480&preload=1&muted=1";
+    ? "background=1&quality=720&preload=1&playsinline=1"
+    : "quality=720&preload=1&muted=1";
 
   return (
     <div
