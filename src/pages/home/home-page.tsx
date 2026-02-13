@@ -15,7 +15,7 @@ export default function HomePage() {
         description="Продуктовый дизайнер с опытом 2+ года: EdTech, e-commerce, сложные интерфейсы."
       />
       {/* Container with max-width 1390px and 25px side padding */}
-      <div className="w-full max-w-[1390px] mx-auto px-[25px] pt-[100px] pb-[70px]">
+      <div className="w-full max-w-[1390px] mx-auto px-[25px] pt-[25px] pb-[70px]">
         {/* Hero Section */}
         <section className="mb-[100px] max-lg:mb-12">
           <div className="flex gap-[12px] max-lg:flex-col max-lg:gap-6">

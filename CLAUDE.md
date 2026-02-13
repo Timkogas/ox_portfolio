@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a portfolio website for a product designer, built with React 19, TypeScript, Vite, React Router, and Tailwind CSS v4. The site is deployed to Cloudflare Pages using Wrangler. Content is in Russian (Russian text for names, descriptions, navigation).
+This is a portfolio website for a product designer, built with React 19, TypeScript, Vite, React Router, and Tailwind CSS v4. The site is deployed to Vercel. Content is in Russian (Russian text for names, descriptions, navigation).
 
 ## Development Commands
 
@@ -62,6 +62,6 @@ TypeScript and Vite are configured with `@/` alias pointing to `src/`:
 
 ### Deployment
 
-- Deploys to Cloudflare Pages via Wrangler
-- Config in `wrangler.jsonc` points to `./dist` directory
-- Compatibility date set to 2026-02-02
+- Deploys to Vercel
+- Config in `vercel.json` with SPA rewrites for React Router
+- Build output directory: `dist`
