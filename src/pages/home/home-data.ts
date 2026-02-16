@@ -9,7 +9,7 @@ export const homeData: HomeData = {
   },
   links: [
     { label: "Резюме", href: "/Резюме_Бакулина_Оксана.pdf#zoom=50" },
-    { label: "LinkedIn", href: "#" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/oxana-bakulina" },
     { label: "Telegram", href: "https://t.me/oxanasvrv" },
     { label: "E-mail", href: "mailto:oxanasuvorova99@yandex.ru" },
   ],
