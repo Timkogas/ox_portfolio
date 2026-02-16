@@ -77,7 +77,7 @@ hero: {
 ```ts
 links: [
   { label: "Резюме", href: "/images/home/Резюме_Бакулина_Оксана.pdf#zoom=50" },
-  { label: "LinkedIn", href: "#" },                       // <-- заменить # на URL
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/oxana-bakulina" },                       // <-- заменить # на URL
   { label: "Telegram", href: "https://t.me/oxanasvrv" },
   { label: "E-mail", href: "mailto:oxanasuvorova99@yandex.ru" },
 ],

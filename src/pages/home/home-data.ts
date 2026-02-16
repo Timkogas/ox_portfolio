@@ -2,7 +2,7 @@ import type { HomeData } from "@/types/home";
 
 export const homeData: HomeData = {
   hero: {
-    name: "Оксана Бакулина, 25 лет",
+    name: "Оксана Бакулина",
     description:
       "Продуктовый дизайнер с опытом 2+ года: работала в EdTech и\u00A0e\u2011commerce. Специализируюсь на сложных интерфейсах и веду задачи от исследования и формулировки проблемы до UI и релиза вместе\nс командой. Бэкграунд — 5+ лет в коммуникационном дизайне.",
     imageUrl: "/images/home/hero/photo.jpg",
