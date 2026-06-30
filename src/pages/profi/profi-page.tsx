@@ -22,13 +22,8 @@ function SectionImage({
 }) {
   return (
     <section className={`w-full ${bgClass ?? ""}`}>
-      <div className="w-full max-w-[1440px] mx-auto overflow-x-auto scrollbar-hide">
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          className="w-full h-auto max-lg:w-[900px] max-lg:max-w-none"
-        />
+      <div className="w-full max-w-[1440px] mx-auto">
+        <img src={src} alt={alt} loading="lazy" className="w-full h-auto" />
       </div>
     </section>
   );
@@ -72,6 +67,7 @@ export default function ProfiPage() {
     context,
     process,
     darkImage,
+    darkNotes,
     firstIteration,
     chartsImage,
     video,
@@ -153,11 +149,29 @@ export default function ProfiPage() {
       </div>
 
       {/* Dark section — Моя статистика phone + arrows + annotations */}
-      <SectionImage
-        src={darkImage}
-        alt="Анализ текущего раздела «Моя статистика»"
-        bgClass="bg-profi-dark-bg"
-      />
+      <section className="w-full bg-profi-dark-bg">
+        <div className="w-full max-w-[1440px] mx-auto">
+          <img
+            src={darkImage}
+            alt="Анализ текущего раздела «Моя статистика»"
+            loading="lazy"
+            className="w-full h-auto"
+          />
+        </div>
+        {/* Mobile: annotation texts as a list (composite is too small to read) */}
+        <div className="hidden max-lg:block w-full px-[24px] pb-[40px]">
+          <ul className="flex flex-col gap-[16px]">
+            {darkNotes.map((note, i) => (
+              <li
+                key={i}
+                className="text-[14px] text-white/80 leading-[1.35] pl-[16px] relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:size-[5px] before:rounded-full before:bg-profi-accent"
+              >
+                {note}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* First iteration paragraph */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
