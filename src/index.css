@@ -102,6 +102,13 @@ body {
   --color-kaspersky-muted-text: var(--kaspersky-muted-text);
   --color-kaspersky-card-bg: var(--kaspersky-card-bg);
   --color-kaspersky-accent: var(--kaspersky-accent);
+
+  /* Profi.ru */
+  --color-profi-hero: var(--profi-hero);
+  --color-profi-accent: var(--profi-accent);
+  --color-profi-dark-bg: var(--profi-dark-bg);
+  --color-profi-card-bg: var(--profi-card-bg);
+  --color-profi-muted-text: var(--profi-muted-text);
 }
 
 :root {
@@ -118,6 +125,13 @@ body {
   --kaspersky-muted-text: rgba(51, 51, 51, 0.6);
   --kaspersky-card-bg: #f3f3f3;
   --kaspersky-accent: #4e9f8d;
+
+  /* Profi.ru project colors */
+  --profi-hero: #fa2a48;
+  --profi-accent: #617ef8;
+  --profi-dark-bg: #000000;
+  --profi-card-bg: #f3f3f3;
+  --profi-muted-text: rgba(51, 51, 51, 0.6);
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);

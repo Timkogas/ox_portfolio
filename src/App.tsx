@@ -7,6 +7,7 @@ const StempsKKPage = lazy(() => import("@/pages/stemps/kk/stemps-kk-page"));
 const KasperskyPage = lazy(() => import("@/pages/kaspersky/kaspersky-page"));
 const BureauDushiPage = lazy(() => import("@/pages/bureau-dushi/bureau-dushi-page"));
 const DrugoePage = lazy(() => import("@/pages/drugoe/drugoe-page"));
+const ProfiPage = lazy(() => import("@/pages/profi/profi-page"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/stemps/konstruktor-kursov" element={<StempsKKPage />} />
           <Route path="/stemps/kk" element={<Navigate to="/stemps/konstruktor-kursov" replace />} />
           <Route path="/kaspersky/*" element={<KasperskyPage />} />
+          <Route path="/profi/*" element={<ProfiPage />} />
           <Route path="/bureau-dushi/*" element={<BureauDushiPage />} />
           <Route path="/drugoe/*" element={<DrugoePage />} />
         </Routes>

@@ -15,6 +15,12 @@ export const homeData: HomeData = {
   ],
   projects: [
     {
+      id: "profi",
+      title: "Профи.ру — статистика для исполнителей",
+      image: "/images/profi/home-card.png",
+      href: "/profi",
+    },
+    {
       id: "stemps",
       title: "STEMPS — корпоративный университет",
       images: [
