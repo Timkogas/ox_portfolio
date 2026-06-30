@@ -38,8 +38,10 @@ export interface ProfiData {
   };
   /** Dark section composite (phone «Моя статистика» + arrows + annotations) */
   darkImage: string;
-  /** Annotation texts (shown as a list on mobile where the composite is too small) */
-  darkNotes: string[];
+  /** Clean phone image (no arrows) used on mobile with numbered markers */
+  darkPhone: string;
+  /** Annotations — on mobile shown as numbered markers on the phone + a numbered list */
+  darkNotes: { text: string; x: number; y: number }[];
   /** Paragraph on white after the dark section */
   firstIteration: string;
   /** First-iteration composite (analytics phones collage) */

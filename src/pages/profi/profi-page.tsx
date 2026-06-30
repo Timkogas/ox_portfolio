@@ -67,6 +67,7 @@ export default function ProfiPage() {
     context,
     process,
     darkImage,
+    darkPhone,
     darkNotes,
     firstIteration,
     chartsImage,
@@ -150,7 +151,8 @@ export default function ProfiPage() {
 
       {/* Dark section — Моя статистика phone + arrows + annotations */}
       <section className="w-full bg-profi-dark-bg">
-        <div className="w-full max-w-[1440px] mx-auto">
+        {/* Desktop: full composite with curved arrows */}
+        <div className="w-full max-w-[1440px] mx-auto max-lg:hidden">
           <img
             src={darkImage}
             alt="Анализ текущего раздела «Моя статистика»"
@@ -158,18 +160,38 @@ export default function ProfiPage() {
             className="w-full h-auto"
           />
         </div>
-        {/* Mobile: annotation texts as a list (composite is too small to read) */}
-        <div className="hidden max-lg:block w-full px-[24px] pb-[40px]">
-          <ul className="flex flex-col gap-[16px]">
+
+        {/* Mobile: clean phone with numbered markers + numbered list */}
+        <div className="hidden max-lg:flex flex-col items-center gap-[32px] px-[24px] py-[40px]">
+          <div className="relative w-[260px] max-w-full">
+            <img
+              src={darkPhone}
+              alt="Раздел «Моя статистика»"
+              loading="lazy"
+              className="w-full h-auto"
+            />
             {darkNotes.map((note, i) => (
-              <li
+              <span
                 key={i}
-                className="text-[14px] text-white/80 leading-[1.35] pl-[16px] relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:size-[5px] before:rounded-full before:bg-profi-accent"
+                className="absolute flex items-center justify-center size-[22px] rounded-full bg-profi-accent text-white text-[12px] font-medium leading-none -translate-x-1/2 -translate-y-1/2 ring-2 ring-profi-dark-bg"
+                style={{ left: `${note.x}%`, top: `${note.y}%` }}
               >
-                {note}
+                {i + 1}
+              </span>
+            ))}
+          </div>
+          <ol className="flex flex-col gap-[16px] w-full">
+            {darkNotes.map((note, i) => (
+              <li key={i} className="flex gap-[12px]">
+                <span className="flex-none flex items-center justify-center size-[22px] rounded-full bg-profi-accent text-white text-[12px] font-medium leading-none">
+                  {i + 1}
+                </span>
+                <p className="text-[14px] text-white/80 leading-[1.35]">
+                  {note.text}
+                </p>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       </section>
 
