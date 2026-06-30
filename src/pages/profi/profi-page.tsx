@@ -254,8 +254,13 @@ export default function ProfiPage() {
       />
 
       {/* Summary + status + footer */}
-      <section className="w-full pt-[64px] max-lg:pt-[40px]">
-        <div className="relative w-full max-w-[1440px] mx-auto px-[24px]">
+      <section className="relative w-full pt-[64px] max-lg:pt-[40px]">
+        {/* Bar continuation — extends the blob's strip to the viewport right edge */}
+        <div
+          aria-hidden="true"
+          className="absolute right-0 bottom-[202px] h-[223px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
+          style={{ background: "linear-gradient(90deg, #E4E9FF, #EEF1FF)" }}
+        />
         {/* Decorative blob — vector, fixed size, anchored to the frame so its
             claws overlap the status card's right edge (matches Figma) */}
         <img
@@ -263,11 +268,12 @@ export default function ProfiPage() {
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-0 bottom-[140px] w-[480px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] bottom-[140px] w-[480px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
         />
+        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[48px]">
             <section className="flex flex-col gap-[16px]">
