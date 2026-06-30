@@ -258,7 +258,7 @@ export default function ProfiPage() {
         {/* Bar continuation — extends the blob's strip to the viewport right edge */}
         <div
           aria-hidden="true"
-          className="absolute right-0 bottom-[202px] h-[223px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
+          className="absolute right-0 bottom-[200px] h-[224px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
           style={{ background: "linear-gradient(90deg, #E4E9FF, #EEF1FF)" }}
         />
         {/* Decorative blob — vector, fixed size, anchored to the frame so its
