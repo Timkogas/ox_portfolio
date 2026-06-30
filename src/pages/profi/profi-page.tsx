@@ -1,5 +1,10 @@
 import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { profiData } from "./profi-data";
 
 /** Full-bleed composite section image. The image stays centred at 1440 while an
@@ -164,7 +169,11 @@ export default function ProfiPage() {
       </div>
 
       {/* First iteration — analytics phones */}
-      <SectionImage src={chartsImage} alt="Прототип первой итерации" />
+      <SectionImage
+        src={chartsImage}
+        alt="Прототип первой итерации"
+        bgClass="bg-profi-dark-bg"
+      />
 
       {/* Video / interviews */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
@@ -183,41 +192,46 @@ export default function ProfiPage() {
         </div>
       </div>
 
-      {/* Testimonials — full-bleed horizontal carousel (aligned to content left) */}
-      <div className="w-full overflow-x-auto scrollbar-hide pb-[64px] max-lg:pb-[40px]">
-        <div className="flex gap-[12px] w-max pl-[calc((100vw-min(100vw,1440px))/2+24px)] pr-[24px]">
+      {/* Testimonials — draggable full-bleed carousel */}
+      <Carousel
+        opts={{ align: "start", dragFree: true }}
+        className="w-full pb-[64px] max-lg:pb-[40px]"
+      >
+        <CarouselContent className="ml-0 pl-[calc((100vw-min(100vw,1440px))/2+12px)] pr-[24px]">
           {testimonials.map((t, i) => (
-            <div
+            <CarouselItem
               key={i}
-              className="flex-none w-[339px] max-lg:w-[280px] h-[200px] bg-profi-card-bg rounded-[10px] p-[24px] flex flex-col justify-between"
+              className="pl-[12px] basis-[339px] max-lg:basis-[280px]"
             >
-              <p className="text-[14px] text-neutral-900 leading-[1.3]">
-                {t.quote}
-              </p>
-              {t.author ? (
-                <div className="flex items-center gap-[12px]">
-                  <Avatar initial={t.initial} />
-                  <span className="text-[14px] text-neutral-900">
-                    {t.author}
-                  </span>
-                </div>
-              ) : (
-                <div className="flex">
-                  {(t.avatars ?? []).map((init, j) => (
-                    <Avatar
-                      key={j}
-                      initial={init}
-                      className={
-                        j > 0 ? "-ml-[4px] ring-2 ring-profi-card-bg" : ""
-                      }
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
+              <div className="h-[200px] bg-profi-card-bg rounded-[10px] p-[24px] flex flex-col justify-between select-none">
+                <p className="text-[14px] text-neutral-900 leading-[1.3]">
+                  {t.quote}
+                </p>
+                {t.author ? (
+                  <div className="flex items-center gap-[12px]">
+                    <Avatar initial={t.initial} />
+                    <span className="text-[14px] text-neutral-900">
+                      {t.author}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex">
+                    {(t.avatars ?? []).map((init, j) => (
+                      <Avatar
+                        key={j}
+                        initial={init}
+                        className={
+                          j > 0 ? "-ml-[4px] ring-2 ring-profi-card-bg" : ""
+                        }
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </CarouselItem>
           ))}
-        </div>
-      </div>
+        </CarouselContent>
+      </Carousel>
 
       {/* Second iteration paragraph */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
@@ -233,11 +247,16 @@ export default function ProfiPage() {
       </div>
 
       {/* Second iteration — finance phones */}
-      <SectionImage src={financeImage} alt="Финальный прототип" />
+      <SectionImage
+        src={financeImage}
+        alt="Финальный прототип"
+        bgClass="bg-profi-dark-bg"
+      />
 
       {/* Summary + status + footer */}
-      <section className="relative w-full pt-[64px] max-lg:pt-[40px]">
-        {/* Decorative blob — bleeds to the viewport right edge, overlaps status card */}
+      <section className="w-full pt-[64px] max-lg:pt-[40px]">
+        <div className="relative w-full max-w-[1440px] mx-auto px-[24px]">
+        {/* Decorative blob — anchored to the 1440 frame, overlaps the status card's right edge */}
         <img
           src={blob}
           alt=""
@@ -248,7 +267,6 @@ export default function ProfiPage() {
             e.currentTarget.style.display = "none";
           }}
         />
-        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[48px]">
             <section className="flex flex-col gap-[16px]">
