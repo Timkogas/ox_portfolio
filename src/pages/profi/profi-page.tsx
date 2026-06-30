@@ -2,18 +2,30 @@ import Footer from "@/components/footer";
 import PageHeader from "@/components/page-header";
 import { profiData } from "./profi-data";
 
-/** Full-bleed composite section image. Scrolls horizontally on mobile so the
- *  baked-in phone screens stay legible instead of shrinking to nothing. */
-function SectionImage({ src, alt }: { src: string; alt: string }) {
+/** Full-bleed composite section image. The image stays centred at 1440 while an
+ *  optional background colour bleeds to the viewport edges (like the case dark
+ *  sections). Scrolls horizontally on mobile so the baked-in phone screens stay
+ *  legible instead of shrinking to nothing. */
+function SectionImage({
+  src,
+  alt,
+  bgClass,
+}: {
+  src: string;
+  alt: string;
+  bgClass?: string;
+}) {
   return (
-    <div className="w-full max-w-[1440px] mx-auto overflow-x-auto scrollbar-hide">
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        className="w-full h-auto max-lg:w-[900px] max-lg:max-w-none"
-      />
-    </div>
+    <section className={`w-full ${bgClass ?? ""}`}>
+      <div className="w-full max-w-[1440px] mx-auto overflow-x-auto scrollbar-hide">
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="w-full h-auto max-lg:w-[900px] max-lg:max-w-none"
+        />
+      </div>
+    </section>
   );
 }
 
@@ -136,7 +148,11 @@ export default function ProfiPage() {
       </div>
 
       {/* Dark section — Моя статистика phone + arrows + annotations */}
-      <SectionImage src={darkImage} alt="Анализ текущего раздела «Моя статистика»" />
+      <SectionImage
+        src={darkImage}
+        alt="Анализ текущего раздела «Моя статистика»"
+        bgClass="bg-profi-dark-bg"
+      />
 
       {/* First iteration paragraph */}
       <div className="w-full max-w-[1440px] mx-auto px-[24px]">
@@ -167,9 +183,9 @@ export default function ProfiPage() {
         </div>
       </div>
 
-      {/* Testimonials — horizontal scroll row */}
-      <div className="w-full max-w-[1440px] mx-auto px-[24px] pb-[64px] max-lg:pb-[40px]">
-        <div className="flex gap-[12px] overflow-x-auto scrollbar-hide">
+      {/* Testimonials — full-bleed horizontal carousel (aligned to content left) */}
+      <div className="w-full overflow-x-auto scrollbar-hide pb-[64px] max-lg:pb-[40px]">
+        <div className="flex gap-[12px] w-max pl-[calc((100vw-min(100vw,1440px))/2+24px)] pr-[24px]">
           {testimonials.map((t, i) => (
             <div
               key={i}
@@ -220,18 +236,19 @@ export default function ProfiPage() {
       <SectionImage src={financeImage} alt="Финальный прототип" />
 
       {/* Summary + status + footer */}
-      <div className="relative w-full max-w-[1440px] mx-auto px-[24px] pt-[64px] max-lg:pt-[40px]">
-        {/* Decorative blob — bottom-right, overlapping */}
+      <section className="relative w-full pt-[64px] max-lg:pt-[40px]">
+        {/* Decorative blob — bleeds to the viewport right edge, overlaps status card */}
         <img
           src={blob}
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-[-24px] bottom-[140px] w-[480px] max-w-[44%] h-auto pointer-events-none max-lg:hidden"
+          className="absolute right-0 bottom-[180px] w-[480px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
         />
+        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[48px]">
             <section className="flex flex-col gap-[16px]">
@@ -277,7 +294,8 @@ export default function ProfiPage() {
             <Footer />
           </div>
         </div>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
