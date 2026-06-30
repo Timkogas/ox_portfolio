@@ -254,19 +254,20 @@ export default function ProfiPage() {
       />
 
       {/* Summary + status + footer */}
-      <section className="w-full pt-[64px] max-lg:pt-[40px]">
-        <div className="relative w-full max-w-[1440px] mx-auto px-[24px]">
-        {/* Decorative blob — anchored to the 1440 frame, overlaps the status card's right edge */}
+      <section className="relative w-full pt-[64px] max-lg:pt-[40px]">
+        {/* Decorative blob — vector, stretches from the status card's right edge
+            to the viewport edge (proportional, no distortion) */}
         <img
           src={blob}
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-0 bottom-[180px] w-[480px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute right-0 bottom-[180px] w-[calc(50vw-260px)] min-w-[480px] max-w-[860px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
         />
+        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
         <div className="grid grid-cols-4 max-lg:grid-cols-1">
           <div className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 flex flex-col gap-[48px]">
             <section className="flex flex-col gap-[16px]">

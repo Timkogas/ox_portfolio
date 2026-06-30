@@ -108,5 +108,5 @@ export const profiData: ProfiData = {
     ],
   },
 
-  blob: "/images/profi/blob.png",
+  blob: "/images/profi/blob.svg",
 };
