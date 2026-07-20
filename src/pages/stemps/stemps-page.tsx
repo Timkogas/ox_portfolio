@@ -74,7 +74,7 @@ export default function StempsPage() {
     hypotheses,
     hypothesisImages,
     videoIntro,
-    demoVideoId,
+    demoImage,
     students,
     details,
     certificates,
@@ -316,14 +316,23 @@ export default function StempsPage() {
       </section>
 
       {/* Video intro text */}
-      <div className="py-[64px] max-lg:py-[40px]">
+      <div className="pt-[64px] pb-[40px] max-lg:pt-[40px] max-lg:pb-[24px]">
         <Content>
           <p className="text-size-m text-neutral-900">{videoIntro}</p>
         </Content>
       </div>
 
-      {/* Demo video (player) */}
-      <VideoBand videoId={demoVideoId} />
+      {/* Demo — editor screenshot (image 1) on gray */}
+      <section className="w-full bg-[var(--stemps-section-bg)] py-[64px] max-lg:py-[40px] px-[24px]">
+        <div className="w-full max-w-[1189px] mx-auto">
+          <img
+            src={demoImage}
+            alt="Демонстрация конструктора курсов"
+            loading="lazy"
+            className="w-full h-auto rounded-[10px]"
+          />
+        </div>
+      </section>
 
       {/* Student mobile views — on black, ~1315-wide row */}
       <section className="w-full bg-black">

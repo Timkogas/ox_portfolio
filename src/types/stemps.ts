@@ -51,10 +51,10 @@ export interface StempsData {
   /** Editor / courses screenshots shown inside the hypotheses section */
   hypothesisImages: { editor: string; courses: string };
 
-  /** Text before the demo video */
+  /** Text before the demo */
   videoIntro: string;
-  /** Demo video (author scenarios) */
-  demoVideoId: string;
+  /** Demo — editor screenshot (image 1) shown on a gray band */
+  demoImage: string;
 
   /** Student mobile views — row of phone screens */
   students: {

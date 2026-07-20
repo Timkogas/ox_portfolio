@@ -79,7 +79,7 @@ export const stempsData: StempsData = {
   videoIntro:
     "В приведённом ниже видео продемонстрировала, как спроектированный интерфейс реализует ключевые сценарии автора, включая сборку структуры и контента курса из готовых блоков.",
 
-  demoVideoId: "4vGeVCoA4JH3WE9JUJAufG",
+  demoImage: "/images/stemps/kk/editor-video.png",
 
   students: {
     label: "Вид студента, мобильная версия",
