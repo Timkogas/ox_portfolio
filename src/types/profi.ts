@@ -5,66 +5,68 @@ export interface ProfiProjectInfo {
   year: string;
 }
 
-export interface ProfiTextSpan {
+export interface ProfiTitledText {
+  title: string;
   text: string;
-  /** Highlighted span shown in accent blue */
-  accent?: boolean;
 }
 
-export interface ProfiTestimonial {
-  quote: string;
-  /** Author line, e.g. "Александр, электрика" */
-  author?: string;
-  /** Initial inside the author avatar; omit for a plain (letterless) avatar */
-  initial?: string;
-  /** Stack of avatars when there is no single author; null = plain avatar */
-  avatars?: (string | null)[];
-}
-
-export interface ProfiResultBlock {
+export interface ProfiTitledList {
   title: string;
   items: string[];
 }
 
 export interface ProfiData {
   projectInfo: ProfiProjectInfo;
-  context: {
-    title: string;
-    paragraphs: string[];
-  };
+
+  /** Intro column: Контекст / Задача / Результаты */
+  context: ProfiTitledText;
+  task: ProfiTitledText;
+  results: ProfiTitledList;
+
+  /** Dark composite — «Результат обновлённого интерфейса раздела Статистика» (teaser) */
+  resultTeaser: string;
+
+  /** Процесс — heading + intro paragraph, then specialist quotes, then outro paragraph */
   process: {
     title: string;
-    spans: ProfiTextSpan[];
+    intro: string;
+    comments: string[];
+    outro: string;
   };
-  /** Dark section composite (phone «Моя статистика» + arrows + annotations) */
-  darkImage: string;
-  /** Clean phone image (no arrows) used on mobile with numbered markers */
-  darkPhone: string;
-  /** Annotations — on mobile shown as numbered markers on the phone + a numbered list */
-  darkNotes: { text: string; x: number; y: number }[];
-  /** Paragraph on white after the dark section */
-  firstIteration: string;
-  /** First-iteration composite (analytics phones collage) */
-  chartsImage: string;
-  /** Video / person mockup */
+
+  /** Dark composite — «Старый интерфейс раздела Статистика» with 4 baked-in annotations */
+  oldInterface: {
+    image: string;
+    /** Clean phone (no annotations) shown on mobile with numbered markers */
+    phone: string;
+    notes: { text: string; x: number; y: number }[];
+  };
+
+  /** Решение — the reframed user request / hypothesis paragraph */
+  solution: string;
+
+  /** Dark composite — 1-я итерация (аналитические дашборды) */
+  iteration1: string;
+
+  /** Video / interviews mockup */
   video: {
     heading: string;
     image: string;
   };
-  testimonials: ProfiTestimonial[];
-  /** Paragraphs after testimonials */
-  secondIteration: string[];
-  /** Second-iteration composite (finance phones) */
-  financeImage: string;
-  /** Final "Таким образом" summary list */
-  summary: {
-    title: string;
-    items: string[];
-  };
-  status: {
+
+  /** Paragraph before the final composite (переход ко 2-й итерации) */
+  secondIteration: string;
+
+  /** Dark composite — 2-я итерация, итоговый интерфейс */
+  iteration2: string;
+
+  /** Final card: outcome + next steps */
+  conclusion: {
     text: string;
-    blocks: ProfiResultBlock[];
+    nextStepsTitle: string;
+    nextSteps: string[];
   };
-  /** Decorative blob image (final illustration) */
+
+  /** Decorative blob (paw illustration) overlapping the final card */
   blob: string;
 }
