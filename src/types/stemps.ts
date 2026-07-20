@@ -1,93 +1,83 @@
-export interface ProjectInfo {
+export interface StempsProjectInfo {
   brand: string;
   role: string;
   sphere: string;
   year: string;
 }
 
-export interface TextSection {
+export interface StempsTitledText {
   title: string;
-  content: string;
+  text: string;
 }
 
-export interface PainItem {
-  title: string;
-  description: string;
-}
-
-export interface Pains {
-  title: string;
-  items: PainItem[];
-}
-
-export interface ClientType {
-  title: string;
-  description: string;
-  badges: string[];
-}
-
-export interface Clients {
-  title: string;
-  types: ClientType[];
-}
-
-export interface Structure {
-  content: string;
-}
-
-export interface Laptop {
-  image: string;
-  title: string;
-  description: string;
-  role: string;
-}
-
-export interface Slide {
-  image: string;
-  title: string;
-  description: string;
-  role: string;
-}
-
-export interface Results {
+export interface StempsTitledList {
   title: string;
   items: string[];
 }
 
-export interface ArrowConfig {
-  position: { x: number; y: number };
-  direction: "left" | "right";
-  width?: number; // percentage of container width
-}
-
-export interface TextPosition {
-  position: { x: number; y: number };
-}
-
-export interface BetweenWorkImage {
-  src: string;
-  alt: string;
-  caption: string;
-  arrow?: ArrowConfig;
-  text?: TextPosition;
-}
-
-export interface BetweenWork {
-  title: string;
-  images: BetweenWorkImage[];
+export interface StempsHypothesis {
+  label: string;
+  text: string;
 }
 
 export interface StempsData {
-  breadcrumbs: string;
-  heroImage: string;
-  projectInfo: ProjectInfo;
-  context: TextSection;
-  process: TextSection;
-  pains: Pains;
-  clients: Clients;
-  structure: Structure;
-  laptops: Laptop[];
-  slider: Slide[];
-  results: Results;
-  betweenWork: BetweenWork;
+  projectInfo: StempsProjectInfo;
+
+  /** Purple wordmark cover (hero band) */
+  heroCover: string;
+
+  /** Intro column: Контекст / Задача / Результаты */
+  context: StempsTitledText;
+  task: StempsTitledText;
+  results: StempsTitledList;
+
+  /** Top demo video (course constructor in action) */
+  heroVideoId: string;
+
+  /** Процесс — competitive analysis + CustDev */
+  process: StempsTitledText;
+
+  /** Blurred CustDev video-call screenshot */
+  custdevImage: string;
+
+  /** Target-audience quotes (Комментарий ЦА) */
+  comments: string[];
+
+  /** Решение — reframed business request / hypothesis */
+  solution: string;
+
+  /** Hypotheses that shaped the constructor architecture */
+  hypotheses: StempsHypothesis[];
+  /** Editor / courses screenshots shown inside the hypotheses section */
+  hypothesisImages: { editor: string; courses: string };
+
+  /** Text before the demo video */
+  videoIntro: string;
+  /** Demo video (author scenarios) */
+  demoVideoId: string;
+
+  /** Student mobile views — row of phone screens */
+  students: {
+    label: string;
+    images: string[];
+  };
+
+  /** Детали — feedback templates + macbook/phone mockup */
+  details: StempsTitledText & { image: string };
+
+  /** Сертификаты — settings + macbook/phone mockup */
+  certificates: { text: string; image: string };
+
+  /** Closing line before the conclusion */
+  moreDetails: string;
+
+  /** Final card: outcome + next steps */
+  conclusion: {
+    text: string;
+    nextStepsTitle: string;
+    nextSteps: string[];
+  };
+
+  /** Decorative blob overlapping the final card */
+  blob: string;
 }
