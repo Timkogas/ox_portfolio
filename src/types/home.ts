@@ -17,6 +17,8 @@ export interface ProjectImage {
 export interface Project {
   id: string;
   title: string;
+  /** Gray tagline shown under the title */
+  subtitle?: string;
   image?: string;
   images?: ProjectImage[];
   href: string;

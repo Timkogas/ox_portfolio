@@ -4,7 +4,7 @@ export const homeData: HomeData = {
   hero: {
     name: "Оксана Бакулина",
     description:
-      "Продуктовый дизайнер с опытом 2+ года: работала в EdTech и\u00A0e\u2011commerce. Специализируюсь на сложных интерфейсах и веду задачи от исследования и формулировки проблемы до UI и релиза вместе\nс командой. Бэкграунд — 5+ лет в коммуникационном дизайне.",
+      "Продуктовый дизайнер с 3-летним опытом в B2C, B2B и E2E проектировании, продуктовых исследованиях и работе с метриками. Обладаю гибким продуктовым мышлением, связываю интерфейсные решения с бизнес-целями, создаю дизайн-системы и быстро погружаюсь в сложные контексты. Имею общий 5-летний бэкграунд в дизайне и открыта к развитию в новых tech-направлениях.",
     imageUrl: "/images/home/hero/photo.jpg",
   },
   links: [
@@ -16,35 +16,38 @@ export const homeData: HomeData = {
   projects: [
     {
       id: "profi",
-      title: "Профи.ру — статистика для исполнителей",
+      title: "Профи.ру — сервис поиска специалистов / Статистика",
+      subtitle: "Растим конверсию засчёт редизайна на 10%",
       image: "/images/profi/home-card.png",
       href: "/profi",
     },
     {
       id: "stemps",
-      title: "STEMPS — корпоративный университет",
-      images: [
-        { src: "/images/home/projects/stemps-.png", position: "center" },
-      ],
+      title: "STEMPS — корпоративный университет / Конструктор курсов",
+      subtitle: "Ускорение Time to Proficiency на 40% через конструктор курсов",
+      image: "/images/home/projects/stemps-cover.png",
       href: "/stemps",
     },
     {
+      id: "kaspersky",
+      title: "Mobile Security by Kaspersky / Концепция",
+      subtitle: "Kaspersky как помощник в повседневных сценариях",
+      image: "/images/home/projects/kaspersky-.jpg",
+      href: "/kaspersky",
+    },
+    {
       id: "bureau-dushi",
-      title: "Бюро души — сервис психологической помощи",
+      title: "Бюро души — сервис психологической помощи / Веб-сайт",
+      subtitle: "UX-сценарии и визуальный стиль сервиса",
       images: [
         { src: "/images/home/projects/bureau-dushi-.png", position: "center" },
       ],
       href: "/bureau-dushi",
     },
     {
-      id: "kaspersky",
-      title: "Mobile Security by Kaspersky / Дипломная работа",
-      image: "/images/home/projects/kaspersky-.jpg",
-      href: "/kaspersky",
-    },
-    {
       id: "other",
       title: "Другое",
+      subtitle: "Коллекция концепций / визуалов / набросков",
       images: [
         { src: "/images/home/projects/drugoe.png", position: "right" },
       ],

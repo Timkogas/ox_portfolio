@@ -134,9 +134,16 @@ export default function HomePage() {
                     </span>
                   </div>
                 </div>
-                <h3 className="text-semibold text-neutral-900 mt-[16px]">
-                  {project.title}
-                </h3>
+                <div className="mt-[16px]">
+                  <h3 className="text-semibold text-neutral-900">
+                    {project.title}
+                  </h3>
+                  {project.subtitle && (
+                    <p className="text-size-s text-neutral-500 mt-[4px]">
+                      {project.subtitle}
+                    </p>
+                  )}
+                </div>
               </a>
             ))}
           </div>
