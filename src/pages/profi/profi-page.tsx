@@ -261,16 +261,35 @@ export default function ProfiPage() {
       </div>
 
       {/* Second iteration — final interface */}
-      <SectionImage src={iteration2} alt="Вторая итерация — итоговый интерфейс" />
+      <section className="w-full bg-profi-dark-bg pt-[32px]">
+        <div className="w-full max-w-[1440px] mx-auto">
+          <p className="text-center text-[14px] text-white/70 leading-[1.2] px-[24px] mb-[8px]">
+            2 итерация. Обновлённый интерфейс. Запуск в прод
+          </p>
+          <img
+            src={iteration2}
+            alt="Вторая итерация — итоговый интерфейс"
+            loading="lazy"
+            className="w-full h-auto"
+          />
+        </div>
+      </section>
 
       {/* Conclusion card + blob + footer */}
-      <section className="relative w-full pt-[64px] max-lg:pt-[40px]">
+      <section className="relative w-full pt-[64px] pb-[70px] max-lg:pt-[40px] max-lg:pb-[40px] overflow-x-clip">
+        {/* Strip continuation — bleeds the лапка's strip to the viewport right edge */}
+        <div
+          aria-hidden="true"
+          className="absolute right-0 bottom-[158px] h-[139px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
+          style={{ background: "linear-gradient(90deg,#E0E6FF,#EEF1FF)" }}
+        />
+        {/* Decorative лапка — anchored to the content-box right edge, bottom */}
         <img
           src={blob}
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] top-[80px] w-[300px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] bottom-[120px] w-[300px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}

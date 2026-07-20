@@ -193,39 +193,120 @@ export default function StempsPage() {
         </Content>
       </div>
 
-      {/* Гипотезы — screenshots + cards */}
-      <section className="w-full bg-[var(--stemps-section-bg)] py-[64px] max-lg:py-[40px]">
-        <Content className="flex flex-col gap-[32px]">
-          <div className="flex gap-[24px] max-lg:flex-col">
+      {/* Гипотезы — screenshots + scattered cards + connector arrows */}
+      <section className="w-full bg-[var(--stemps-section-bg)] py-[64px] max-lg:py-[40px] overflow-x-clip">
+        {/* Desktop: scattered layout with curved connectors (positions from Figma) */}
+        <div className="hidden lg:block w-full max-w-[1440px] mx-auto">
+          <div className="relative w-full aspect-[1440/850]">
+            {/* Connector arrows */}
+            <svg
+              viewBox="0 0 1440 850"
+              fill="none"
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              aria-hidden="true"
+            >
+              <defs>
+                <marker
+                  id="hyp-arrow"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" strokeWidth="1.5" />
+                </marker>
+              </defs>
+              <g stroke="#333333" strokeWidth="1.5" markerEnd="url(#hyp-arrow)">
+                {/* №3 top-left → editor */}
+                <path d="M322,120 C382,120 372,178 452,200" />
+                {/* №1 left → courses */}
+                <path d="M278,332 C362,332 402,384 470,404" />
+                {/* №5 top-right → editor */}
+                <path d="M1296,232 C1198,232 1176,282 1062,288" />
+                {/* №2 right → editor */}
+                <path d="M1298,556 C1182,556 1150,500 1068,482" />
+                {/* №4 bottom → courses */}
+                <path d="M858,600 C806,562 786,540 762,516" />
+              </g>
+            </svg>
+
+            {/* Screenshots */}
             <img
               src={hypothesisImages.editor}
               alt="Редактор конструктора курсов"
               loading="lazy"
-              className="w-[62%] max-lg:w-full h-auto rounded-[10px] self-start"
+              className="absolute rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              style={{ left: "26.04%", top: "11.3%", width: "47.9%" }}
             />
             <img
               src={hypothesisImages.courses}
               alt="Каталог курсов"
               loading="lazy"
-              className="w-[38%] max-lg:w-full h-auto rounded-[10px] self-end max-lg:self-auto"
+              className="absolute rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              style={{ left: "12.2%", top: "42.8%", width: "29.9%" }}
             />
+
+            {/* Cards */}
+            {hypotheses.map((h, i) => {
+              const pos = [
+                { left: "3.96%", top: "30.1%" }, // №1 left
+                { left: "80%", top: "56.7%" }, // №2 right
+                { left: "7.5%", top: "3.8%" }, // №3 top-left
+                { left: "52.8%", top: "69.2%" }, // №4 bottom
+                { left: "80.3%", top: "14.9%" }, // №5 top-right
+              ][i];
+              return (
+                <div
+                  key={i}
+                  className="absolute bg-[var(--stemps-card-bg)] rounded-[10px] p-[20px] flex flex-col gap-[12px]"
+                  style={{ left: pos.left, top: pos.top, width: "15.07%" }}
+                >
+                  <span className="text-[14px] font-medium text-[var(--stemps-accent)]">
+                    {h.label}
+                  </span>
+                  <p className="text-[14px] text-neutral-900 leading-[1.3]">
+                    {h.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
-          <div className="grid grid-cols-3 gap-[12px] max-lg:grid-cols-1">
-            {hypotheses.map((h, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-[10px] p-[20px] flex flex-col gap-[12px]"
-              >
-                <span className="text-[14px] font-medium text-[var(--stemps-accent)]">
-                  {h.label}
-                </span>
-                <p className="text-[14px] text-neutral-900 leading-[1.3]">
-                  {h.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </Content>
+        </div>
+
+        {/* Mobile / tablet: screenshots stacked + cards column */}
+        <div className="lg:hidden">
+          <Content className="flex flex-col gap-[24px]">
+            <img
+              src={hypothesisImages.editor}
+              alt="Редактор конструктора курсов"
+              loading="lazy"
+              className="w-full h-auto rounded-[10px]"
+            />
+            <img
+              src={hypothesisImages.courses}
+              alt="Каталог курсов"
+              loading="lazy"
+              className="w-[70%] h-auto rounded-[10px]"
+            />
+            <div className="flex flex-col gap-[12px]">
+              {hypotheses.map((h, i) => (
+                <div
+                  key={i}
+                  className="bg-[var(--stemps-card-bg)] rounded-[10px] p-[20px] flex flex-col gap-[12px]"
+                >
+                  <span className="text-[14px] font-medium text-[var(--stemps-accent)]">
+                    {h.label}
+                  </span>
+                  <p className="text-[14px] text-neutral-900 leading-[1.3]">
+                    {h.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Content>
+        </div>
       </section>
 
       {/* Video intro text */}
@@ -301,13 +382,13 @@ export default function StempsPage() {
       </div>
 
       {/* Conclusion card + blob + footer */}
-      <section className="relative w-full">
+      <section className="relative w-full pb-[70px] max-lg:pb-[40px] overflow-x-clip">
         <img
           src={blob}
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] top-[24px] w-[280px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] top-[40px] w-[240px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
