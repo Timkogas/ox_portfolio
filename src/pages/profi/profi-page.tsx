@@ -254,7 +254,7 @@ export default function ProfiPage() {
       </div>
 
       {/* Transition to second iteration + caption on white */}
-      <div className="pb-[48px] max-lg:pb-[40px]">
+      <div className="pb-[16px] max-lg:pb-[16px]">
         <Content className="flex flex-col gap-[48px] max-lg:gap-[32px]">
           <p className="text-size-m text-neutral-900">{secondIteration}</p>
           <p className="text-[14px] text-profi-muted-text leading-[1.2] tracking-[-0.14px]">
