@@ -38,7 +38,8 @@ function SectionTitle({ children }: { children: ReactNode }) {
   );
 }
 
-/** Full-bleed video band (autoplay poster or player), black background. */
+/** Full-bleed video band (autoplay poster or player), black background.
+ *  Sized to the Figma macbook width (~1189px), not the default 690. */
 function VideoBand({
   videoId,
   background = false,
@@ -47,8 +48,13 @@ function VideoBand({
   background?: boolean;
 }) {
   return (
-    <div className="w-full bg-black flex justify-center py-[44px] max-lg:py-[24px] px-[24px]">
-      <LazyVideo videoId={videoId} background={background} />
+    <div className="w-full bg-black flex justify-center py-[64px] max-lg:py-[24px] px-[24px]">
+      <LazyVideo
+        videoId={videoId}
+        background={background}
+        className="w-full max-w-[1000px]"
+        aspectRatio="1000/586"
+      />
     </div>
   );
 }
@@ -319,21 +325,21 @@ export default function StempsPage() {
       {/* Demo video (player) */}
       <VideoBand videoId={demoVideoId} />
 
-      {/* Student mobile views */}
-      <section className="w-full bg-[var(--stemps-section-bg)]">
-        <Content className="py-[64px] max-lg:py-[40px]">
-          <div className="flex items-start justify-between gap-[12px] max-lg:justify-start max-lg:overflow-x-auto max-lg:-mx-[24px] max-lg:px-[24px] scrollbar-hide">
+      {/* Student mobile views — on black, ~1315-wide row */}
+      <section className="w-full bg-black">
+        <div className="w-full max-w-[1363px] mx-auto px-[24px] py-[64px] max-lg:py-[40px]">
+          <div className="flex items-start justify-between gap-[24px] max-lg:justify-start max-lg:gap-[12px] max-lg:overflow-x-auto scrollbar-hide">
             {students.images.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`${students.label} ${i + 1}`}
                 loading="lazy"
-                className="w-[calc((100%-36px)/4)] h-auto rounded-[10px] max-lg:w-[160px] max-lg:shrink-0"
+                className="w-[calc((100%-72px)/4)] h-auto rounded-[10px] max-lg:w-[220px] max-lg:shrink-0"
               />
             ))}
           </div>
-        </Content>
+        </div>
       </section>
       <div className="pt-[16px]">
         <Content>

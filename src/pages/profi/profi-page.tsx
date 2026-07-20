@@ -253,43 +253,34 @@ export default function ProfiPage() {
         </Content>
       </div>
 
-      {/* Transition to second iteration */}
-      <div className="pb-[64px] max-lg:pb-[40px]">
-        <Content>
+      {/* Transition to second iteration + caption on white */}
+      <div className="pb-[48px] max-lg:pb-[40px]">
+        <Content className="flex flex-col gap-[48px] max-lg:gap-[32px]">
           <p className="text-size-m text-neutral-900">{secondIteration}</p>
+          <p className="text-[14px] text-profi-muted-text leading-[1.2] tracking-[-0.14px]">
+            2 итерация. Обновлённый интерфейс. Запуск в прод
+          </p>
         </Content>
       </div>
 
-      {/* Second iteration — final interface */}
-      <section className="w-full bg-profi-dark-bg pt-[32px]">
-        <div className="w-full max-w-[1440px] mx-auto">
-          <p className="text-center text-[14px] text-white/70 leading-[1.2] px-[24px] mb-[8px]">
-            2 итерация. Обновлённый интерфейс. Запуск в прод
-          </p>
-          <img
-            src={iteration2}
-            alt="Вторая итерация — итоговый интерфейс"
-            loading="lazy"
-            className="w-full h-auto"
-          />
-        </div>
-      </section>
+      {/* Second iteration — final interface (black band) */}
+      <SectionImage src={iteration2} alt="Вторая итерация — итоговый интерфейс" />
 
       {/* Conclusion card + blob + footer */}
       <section className="relative w-full pt-[64px] pb-[70px] max-lg:pt-[40px] max-lg:pb-[40px] overflow-x-clip">
         {/* Strip continuation — bleeds the лапка's strip to the viewport right edge */}
         <div
           aria-hidden="true"
-          className="absolute right-0 bottom-[158px] h-[139px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
+          className="absolute right-0 bottom-[200px] h-[224px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
           style={{ background: "linear-gradient(90deg,#E0E6FF,#EEF1FF)" }}
         />
-        {/* Decorative лапка — anchored to the content-box right edge, bottom */}
+        {/* Decorative лапка — paw overlaps the card's right edge, strip bleeds right */}
         <img
           src={blob}
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] bottom-[120px] w-[300px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] bottom-[140px] w-[480px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
