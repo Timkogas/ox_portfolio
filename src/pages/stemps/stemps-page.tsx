@@ -212,45 +212,6 @@ export default function StempsPage() {
         {/* Desktop: scattered layout with curved connectors (positions from Figma) */}
         <div className="hidden lg:block w-full max-w-[1440px] mx-auto">
           <div className="relative w-full aspect-[1440/850]">
-            {/* Connector arrows */}
-            <svg
-              viewBox="0 0 1440 850"
-              fill="none"
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              aria-hidden="true"
-            >
-              <defs>
-                <marker
-                  id="hyp-arrow"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="6"
-                  markerHeight="6"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" strokeWidth="1.5" />
-                </marker>
-              </defs>
-              <g
-                stroke="#333333"
-                strokeWidth="1.5"
-                markerEnd="url(#hyp-arrow)"
-                className="[&_path]:[vector-effect:non-scaling-stroke]"
-              >
-                {/* №3 top-left → editor */}
-                <path d="M322,120 C382,120 372,178 452,200" />
-                {/* №1 left → courses */}
-                <path d="M278,332 C362,332 402,384 470,404" />
-                {/* №5 top-right → editor */}
-                <path d="M1296,232 C1198,232 1176,282 1062,288" />
-                {/* №2 right → editor */}
-                <path d="M1298,556 C1182,556 1150,500 1068,482" />
-                {/* №4 bottom → courses */}
-                <path d="M858,600 C806,562 786,540 762,516" />
-              </g>
-            </svg>
-
             {/* Screenshots */}
             <img
               src={hypothesisImages.editor}
@@ -266,6 +227,27 @@ export default function StempsPage() {
               className="absolute rounded-[10px]"
               style={{ left: "12.2%", top: "42.8%", width: "29.9%" }}
             />
+
+            {/* Connector arrows — Figma-exported curves (same asset set as
+                the KK editor annotations), positioned over the composite.
+                Drawn above screenshots, below cards. */}
+            {[
+              { src: "/images/stemps/kk/arrow-1.svg", left: "22.3%", top: "10.8%", width: "9.2%" }, // №3 → «Редактировать»
+              { src: "/images/stemps/kk/arrow-2.svg", left: "18.2%", top: "34.2%", width: "28.1%" }, // №1 → «Структура курса +»
+              { src: "/images/stemps/kk/arrow-3.svg", left: "72.2%", top: "18.2%", width: "8.3%" }, // №5 → правый тулбар
+              { src: "/images/stemps/kk/arrow-4.svg", left: "65.9%", top: "51.6%", width: "14.4%" }, // №2 → тулбар блоков
+              { src: "/images/stemps/kk/arrow-5.svg", left: "37.4%", top: "71.9%", width: "15.9%" }, // №4 → «Черновик»
+            ].map((a, i) => (
+              <img
+                key={i}
+                src={a.src}
+                alt=""
+                role="presentation"
+                loading="lazy"
+                className="absolute pointer-events-none"
+                style={{ left: a.left, top: a.top, width: a.width }}
+              />
+            ))}
 
             {/* Cards */}
             {hypotheses.map((h, i) => {
