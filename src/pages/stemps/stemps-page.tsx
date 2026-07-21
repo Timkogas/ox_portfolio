@@ -230,7 +230,12 @@ export default function StempsPage() {
                   <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" strokeWidth="1.5" />
                 </marker>
               </defs>
-              <g stroke="#333333" strokeWidth="1.5" markerEnd="url(#hyp-arrow)">
+              <g
+                stroke="#333333"
+                strokeWidth="1.5"
+                markerEnd="url(#hyp-arrow)"
+                className="[&_path]:[vector-effect:non-scaling-stroke]"
+              >
                 {/* №3 top-left → editor */}
                 <path d="M322,120 C382,120 372,178 452,200" />
                 {/* №1 left → courses */}
@@ -249,14 +254,14 @@ export default function StempsPage() {
               src={hypothesisImages.editor}
               alt="Редактор конструктора курсов"
               loading="lazy"
-              className="absolute rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              className="absolute rounded-[10px]"
               style={{ left: "26.04%", top: "11.3%", width: "47.9%" }}
             />
             <img
               src={hypothesisImages.courses}
               alt="Каталог курсов"
               loading="lazy"
-              className="absolute rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              className="absolute rounded-[10px]"
               style={{ left: "12.2%", top: "42.8%", width: "29.9%" }}
             />
 
@@ -275,12 +280,12 @@ export default function StempsPage() {
                   className="absolute bg-[var(--stemps-hyp-card)] rounded-[10px] p-[16px] flex flex-col gap-[8px]"
                   style={{ left: pos.left, top: pos.top, width: "15.07%" }}
                 >
-                  <span className="text-[12px] font-medium text-[var(--stemps-accent)] leading-[1.2]">
-                    {h.label}
-                  </span>
-                  <p className="text-[12px] text-neutral-900 leading-[1.4]">
+                  <p className="text-[12px] text-black/60 leading-[1.4]">
                     {h.text}
                   </p>
+                  <span className="text-[12px] font-medium text-black/60 leading-[1.2]">
+                    {h.label}
+                  </span>
                 </div>
               );
             })}
@@ -308,12 +313,12 @@ export default function StempsPage() {
                   key={i}
                   className="bg-[var(--stemps-hyp-card)] rounded-[10px] p-[20px] flex flex-col gap-[12px]"
                 >
-                  <span className="text-[14px] font-medium text-[var(--stemps-accent)]">
-                    {h.label}
-                  </span>
-                  <p className="text-[14px] text-neutral-900 leading-[1.3]">
+                  <p className="text-[14px] text-black/60 leading-[1.3]">
                     {h.text}
                   </p>
+                  <span className="text-[14px] font-medium text-black/60">
+                    {h.label}
+                  </span>
                 </div>
               ))}
             </div>
