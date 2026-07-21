@@ -1,6 +1,7 @@
 import type { ProfiData } from "@/types/profi";
+import { typo } from "@/lib/typography";
 
-export const profiData: ProfiData = {
+export const profiData: ProfiData = typo({
   projectInfo: {
     brand: "Профи.ру",
     role: "Продуктовый дизайнер, ux-исследователь",
@@ -129,4 +130,4 @@ export const profiData: ProfiData = {
   },
 
   blob: "/images/profi/blob2.png",
-};
+});

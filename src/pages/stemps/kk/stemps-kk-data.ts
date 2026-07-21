@@ -1,6 +1,7 @@
 import type { StempsKKData } from "@/types/stemps-kk";
+import { typo } from "@/lib/typography";
 
-export const stempsKKData: StempsKKData = {
+export const stempsKKData: StempsKKData = typo({
   heroImage: "/images/stemps/laptop-1-constructor.png",
   videoId: "rfy4Bvj7VWPdTseVCQqFmK",
 
@@ -174,4 +175,4 @@ export const stempsKKData: StempsKKData = {
       "Конструктор используется как основной инструмент сборки курсов: создано более 157 курсов разных форматов",
     ],
   },
-};
+});

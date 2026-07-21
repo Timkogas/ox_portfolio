@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { nbsp } from "@/lib/typography";
 
 interface FooterProps {
   className?: string;
@@ -8,7 +9,7 @@ export default function Footer({ className }: FooterProps) {
   return (
     <footer className={cn("", className)}>
       <p className="text-size-m text-neutral-900">
-        буду рада обсудить детали и ответить на вопросы
+        {nbsp("буду рада обсудить детали и ответить на вопросы")}
         <br />
         <a
           href="https://t.me/oxanasvrv"

@@ -1,5 +1,6 @@
 import { Component } from "react";
 import type { ErrorInfo, ReactNode } from "react";
+import { nbsp } from "@/lib/typography";
 
 interface Props {
   children: ReactNode;
@@ -30,7 +31,7 @@ export class ErrorBoundary extends Component<Props, State> {
         this.props.fallback ?? (
           <div className="min-h-screen flex items-center justify-center bg-white">
             <p className="text-size-m text-neutral-900">
-              Что-то пошло не так.{" "}
+              {nbsp("Что-то пошло не так.")}{" "}
               <button
                 onClick={() => this.setState({ hasError: false })}
                 className="underline hover:no-underline"

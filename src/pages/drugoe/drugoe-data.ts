@@ -1,6 +1,7 @@
 import type { DrugoeData } from "@/types/drugoe";
+import { typo } from "@/lib/typography";
 
-export const drugoeData: DrugoeData = {
+export const drugoeData: DrugoeData = typo({
   projects: [
     {
       title: "Проект «Портал для развития карьеры дизайнера»",
@@ -22,4 +23,4 @@ export const drugoeData: DrugoeData = {
       ],
     },
   ],
-};
+});

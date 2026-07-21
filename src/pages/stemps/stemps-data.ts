@@ -1,6 +1,7 @@
 import type { StempsData } from "@/types/stemps";
+import { typo } from "@/lib/typography";
 
-export const stempsData: StempsData = {
+export const stempsData: StempsData = typo({
   projectInfo: {
     brand: "STEMPS",
     role: "Продуктовый дизайнер, ux-исследователь",
@@ -117,4 +118,4 @@ export const stempsData: StempsData = {
   },
 
   blob: "/images/stemps/kk/blob.png",
-};
+});

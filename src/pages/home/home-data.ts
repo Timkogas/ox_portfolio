@@ -1,6 +1,7 @@
 import type { HomeData } from "@/types/home";
+import { typo } from "@/lib/typography";
 
-export const homeData: HomeData = {
+export const homeData: HomeData = typo({
   hero: {
     name: "Оксана Бакулина",
     description:
@@ -54,4 +55,4 @@ export const homeData: HomeData = {
       href: "/drugoe",
     },
   ],
-};
+});

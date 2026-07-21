@@ -1,6 +1,7 @@
 import type { KasperskyData } from "@/types/kaspersky";
+import { typo } from "@/lib/typography";
 
-export const kasperskyData: KasperskyData = {
+export const kasperskyData: KasperskyData = typo({
   heroImage: "/images/kaspersky/hero.png",
 
   projectInfo: {
@@ -154,4 +155,4 @@ export const kasperskyData: KasperskyData = {
     linkText: "написать",
     linkUrl: "https://t.me/oxanasvrv",
   },
-};
+});

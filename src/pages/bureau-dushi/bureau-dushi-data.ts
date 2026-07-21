@@ -1,6 +1,7 @@
 import type { BureauDushiData } from "@/types/bureau-dushi";
+import { typo } from "@/lib/typography";
 
-export const bureauDushiData: BureauDushiData = {
+export const bureauDushiData: BureauDushiData = typo({
   heroImage: "/images/bureau-dushi/hero.png",
 
   projectInfo: {
@@ -105,4 +106,4 @@ export const bureauDushiData: BureauDushiData = {
       "/images/bureau-dushi/phone-3.png",
     ],
   },
-};
+});
