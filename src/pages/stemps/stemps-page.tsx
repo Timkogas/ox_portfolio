@@ -232,11 +232,11 @@ export default function StempsPage() {
                 the KK editor annotations), positioned over the composite.
                 Drawn above screenshots, below cards. */}
             {[
-              { src: "/images/stemps/kk/arrow-1.svg", left: "22.3%", top: "10.8%", width: "9.2%" }, // №3 → «Редактировать»
-              { src: "/images/stemps/kk/arrow-2.svg", left: "18.2%", top: "34.2%", width: "28.1%" }, // №1 → «Структура курса +»
-              { src: "/images/stemps/kk/arrow-3.svg", left: "72.2%", top: "18.2%", width: "8.3%" }, // №5 → правый тулбар
-              { src: "/images/stemps/kk/arrow-4.svg", left: "65.9%", top: "51.6%", width: "14.4%" }, // №2 → тулбар блоков
-              { src: "/images/stemps/kk/arrow-5.svg", left: "37.4%", top: "71.9%", width: "15.9%" }, // №4 → «Черновик»
+              { src: "/images/stemps/kk/arrow-1.svg", left: "22.51%", top: "9.75%", width: "7.54%" }, // №3 → «Редактировать»
+              { src: "/images/stemps/kk/arrow-2.svg", left: "19.00%", top: "26.76%", width: "14.11%" }, // №1 → «Структура курса +»
+              { src: "/images/stemps/kk/arrow-3.svg", left: "71.94%", top: "15.76%", width: "8.43%" }, // №5 → правый тулбар
+              { src: "/images/stemps/kk/arrow-4.svg", left: "62.81%", top: "50.92%", width: "17.29%" }, // №2 → тулбар блоков
+              { src: "/images/stemps/kk/arrow-5.svg", left: "27.07%", top: "54.07%", width: "25.89%" }, // №4 → «Черновик»
             ].map((a, i) => (
               <img
                 key={i}
