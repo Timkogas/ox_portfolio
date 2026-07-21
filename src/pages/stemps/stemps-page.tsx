@@ -383,12 +383,12 @@ export default function StempsPage() {
         </Content>
       </div>
       <section className="w-full py-[40px]">
-        <div className="w-full max-w-[1440px] mx-auto">
+        <div className="w-full max-w-[1440px] mx-auto max-lg:px-[24px]">
           <img
             src={details.image}
             alt="Шаблоны обратной связи"
             loading="lazy"
-            className="w-full h-auto"
+            className="w-full h-auto max-lg:rounded-[10px]"
           />
         </div>
       </section>
