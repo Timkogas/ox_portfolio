@@ -402,13 +402,13 @@ export default function StempsPage() {
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+155px)] top-[-24px] w-[255px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+40px)] top-[-40px] w-[320px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
         />
         <Content className="flex flex-col gap-[48px]">
-          <section className="relative bg-[var(--stemps-card-bg)] rounded-[10px] p-[24px] pr-[190px] max-lg:pr-[24px] flex flex-col gap-[24px]">
+          <section className="relative bg-[var(--stemps-card-bg)] rounded-[10px] p-[24px] pr-[145px] max-lg:pr-[24px] flex flex-col gap-[24px]">
             <p className="text-size-m text-neutral-900">{conclusion.text}</p>
             <div className="flex flex-col gap-[8px]">
               <p className="text-[14px] font-medium text-[var(--stemps-muted-text)] leading-[1.2]">
