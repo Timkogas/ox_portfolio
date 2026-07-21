@@ -20,6 +20,15 @@ export interface StempsHypothesis {
   text: string;
 }
 
+export interface StempsSolution {
+  /** Lead-in sentence before the reframed request */
+  intro: string;
+  /** Reframed business request, shown as a highlighted pull-quote */
+  quote: string;
+  /** Concluding hypothesis statement */
+  conclusion: string;
+}
+
 export interface StempsData {
   projectInfo: StempsProjectInfo;
 
@@ -44,7 +53,7 @@ export interface StempsData {
   comments: string[];
 
   /** Решение — reframed business request / hypothesis */
-  solution: string;
+  solution: StempsSolution;
 
   /** Hypotheses that shaped the constructor architecture */
   hypotheses: StempsHypothesis[];

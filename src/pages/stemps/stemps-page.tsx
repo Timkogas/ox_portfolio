@@ -195,8 +195,13 @@ export default function StempsPage() {
 
       {/* Решение */}
       <div className="pb-[64px] max-lg:pb-[40px]">
-        <Content>
-          <p className="text-size-m text-neutral-900">{solution}</p>
+        <Content className="flex flex-col gap-[24px] max-lg:gap-[20px]">
+          <p className="text-size-m text-neutral-900">{solution.intro}</p>
+          <p className="text-size-m text-neutral-900">
+            <span className="text-[var(--stemps-accent)]">«…»</span>{" "}
+            {solution.quote}
+          </p>
+          <p className="text-size-m text-neutral-900">{solution.conclusion}</p>
         </Content>
       </div>
 
