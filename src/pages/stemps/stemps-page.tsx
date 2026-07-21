@@ -43,9 +43,11 @@ function SectionTitle({ children }: { children: ReactNode }) {
 function VideoBand({
   videoId,
   background = false,
+  aspectRatio = "1189/697",
 }: {
   videoId: string;
   background?: boolean;
+  aspectRatio?: string;
 }) {
   return (
     <div className="w-full bg-black flex justify-center py-[64px] max-lg:py-[24px] px-[24px]">
@@ -53,7 +55,7 @@ function VideoBand({
         videoId={videoId}
         background={background}
         className="w-full max-w-[1189px]"
-        aspectRatio="1189/697"
+        aspectRatio={aspectRatio}
       />
     </div>
   );
@@ -341,8 +343,8 @@ export default function StempsPage() {
         </Content>
       </div>
 
-      {/* Demo video (player) — on black */}
-      <VideoBand videoId={demoVideoId} />
+      {/* Demo video (player) — on black; 16:9 to match the source (no crop / bars) */}
+      <VideoBand videoId={demoVideoId} aspectRatio="16/9" />
 
       {/* White strip between demo video and mobile section */}
       <div className="h-[100px] bg-white max-lg:h-[40px]" />
