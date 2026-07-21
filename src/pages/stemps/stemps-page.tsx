@@ -337,12 +337,18 @@ export default function StempsPage() {
       {/* White strip between demo video and mobile section */}
       <div className="h-[100px] bg-white max-lg:h-[40px]" />
 
-      {/* Student mobile views — on black, white heading above phones */}
-      <section className="w-full bg-black">
-        <div className="w-full max-w-[1364px] mx-auto px-[24px] py-[64px] max-lg:py-[40px]">
-          <p className="text-[14px] text-white leading-[1.2] mb-[36px] max-lg:mb-[24px]">
-            {students.label}
-          </p>
+      {/* Student mobile views — on black; heading aligned to the text column, phones full-width */}
+      <section className="w-full bg-black py-[64px] max-lg:py-[40px]">
+        {/* Heading — same content column as "Детали"/"Шаблоны" (col-start-2) */}
+        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
+          <div className="grid grid-cols-4 gap-x-[12px] max-lg:grid-cols-1">
+            <p className="col-start-2 col-span-2 max-lg:col-start-1 max-lg:col-span-1 text-[14px] text-white leading-[1.2] mb-[36px] max-lg:mb-[24px]">
+              {students.label}
+            </p>
+          </div>
+        </div>
+        {/* Phones — full-width row */}
+        <div className="w-full max-w-[1364px] mx-auto px-[24px]">
           <div className="flex items-start justify-between gap-[32px] max-lg:justify-start max-lg:gap-[12px] max-lg:overflow-x-auto scrollbar-hide">
             {students.images.map((src, i) => (
               <img
