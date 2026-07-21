@@ -398,21 +398,23 @@ export default function StempsPage() {
       {/* Conclusion card + blob + footer */}
       <section className="w-full pb-[70px] max-lg:pb-[40px] overflow-x-clip">
         <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-          <div className="flex flex-col gap-[48px] max-lg:gap-[32px]">
+          {/* Card + blob + footer as one block, centred in the content column;
+              footer aligns to the card's left edge. */}
+          <div className="w-[894px] max-w-full mx-auto flex flex-col gap-[48px] max-lg:gap-[32px]">
             {/* Card + blob row — the row height equals the card height, so the
                 blob centres vertically on the card (not on the whole block). */}
-            <div className="relative w-[600px] max-w-full">
+            <div className="relative">
               <img
                 src={blob}
                 alt=""
                 role="presentation"
                 loading="lazy"
-                className="absolute z-10 left-full top-1/2 -translate-x-[16px] -translate-y-1/2 w-[310px] h-auto pointer-events-none max-lg:hidden"
+                className="absolute z-10 left-[600px] top-1/2 -translate-x-[16px] -translate-y-1/2 w-[310px] h-auto pointer-events-none max-lg:hidden"
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                 }}
               />
-              <section className="relative bg-[var(--stemps-section-bg)] rounded-[10px] p-[24px] flex flex-col gap-[24px]">
+              <section className="relative w-[600px] max-lg:w-full bg-[var(--stemps-section-bg)] rounded-[10px] px-[24px] py-[36px] flex flex-col gap-[24px]">
                 <p className="text-size-m text-neutral-900">
                   {conclusion.text}
                 </p>
