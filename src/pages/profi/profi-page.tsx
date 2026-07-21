@@ -271,7 +271,7 @@ export default function ProfiPage() {
         {/* Strip continuation — bleeds the лапка's strip to the viewport right edge */}
         <div
           aria-hidden="true"
-          className="absolute right-0 bottom-[200px] h-[200px] w-[calc((100vw-min(100vw,1440px))/2+114px)] pointer-events-none max-lg:hidden"
+          className="absolute right-0 bottom-[200px] h-[200px] w-[calc((100vw-min(100vw,1440px))/2+49px)] pointer-events-none max-lg:hidden"
           style={{ background: "linear-gradient(90deg,#E0E6FF,#EEF1FF)" }}
         />
         {/* Decorative лапка — paw overlaps the card's right edge, strip bleeds right */}
@@ -280,7 +280,7 @@ export default function ProfiPage() {
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+114px)] bottom-[145px] w-[430px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+49px)] bottom-[145px] w-[430px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}

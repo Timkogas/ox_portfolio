@@ -403,7 +403,7 @@ export default function StempsPage() {
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+267px)] top-[-24px] w-[267px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+202px)] top-[-24px] w-[267px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
