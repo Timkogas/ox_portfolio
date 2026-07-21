@@ -76,13 +76,16 @@ export const stempsData: StempsData = {
     courses: "/images/stemps/kk/hypothesis-courses.png",
   },
 
+  structureText:
+    "Таким образом структура выстраивается так: курс → версия курса → модуль → тип урока → блок",
+
   videoIntro:
     "В приведённом ниже видео продемонстрировала, как спроектированный интерфейс реализует ключевые сценарии автора, включая сборку структуры и контента курса из готовых блоков.",
 
   demoVideoId: "4vGeVCoA4JH3WE9JUJAufG",
 
   students: {
-    label: "Вид студента, мобильная версия",
+    label: "Мобильная версия пользовательского сценария",
     images: [
       "/images/stemps/kk/student-2.png",
       "/images/stemps/kk/student-3.png",

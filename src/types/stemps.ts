@@ -51,6 +51,8 @@ export interface StempsData {
   /** Editor / courses screenshots shown inside the hypotheses section */
   hypothesisImages: { editor: string; courses: string };
 
+  /** Caption under the hypotheses composite (course structure formula) */
+  structureText: string;
   /** Text before the demo */
   videoIntro: string;
   /** Demo video (course constructor in action) shown on a black band */
@@ -58,6 +60,7 @@ export interface StempsData {
 
   /** Student mobile views — row of phone screens */
   students: {
+    /** White heading shown above the phones (on the black band) */
     label: string;
     images: string[];
   };

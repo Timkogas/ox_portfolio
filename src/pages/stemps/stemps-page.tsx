@@ -73,6 +73,7 @@ export default function StempsPage() {
     solution,
     hypotheses,
     hypothesisImages,
+    structureText,
     videoIntro,
     demoVideoId,
     students,
@@ -313,6 +314,14 @@ export default function StempsPage() {
             </div>
           </Content>
         </div>
+
+        {/* Structure caption — centered under the hypotheses composite */}
+        <p className="mt-[48px] max-lg:mt-[32px] px-[24px] text-center text-[14px] text-neutral-900 leading-[1.4]">
+          {structureText.split("курс →")[0]}
+          <span className="font-medium">
+            курс &rarr; версия курса &rarr; модуль &rarr; тип урока &rarr; блок
+          </span>
+        </p>
       </section>
 
       {/* Video intro text */}
@@ -325,9 +334,15 @@ export default function StempsPage() {
       {/* Demo video (player) — on black */}
       <VideoBand videoId={demoVideoId} />
 
-      {/* Student mobile views — on black, ~1315-wide row */}
+      {/* White strip between demo video and mobile section */}
+      <div className="h-[100px] bg-white max-lg:h-[40px]" />
+
+      {/* Student mobile views — on black, white heading above phones */}
       <section className="w-full bg-black">
         <div className="w-full max-w-[1364px] mx-auto px-[24px] py-[64px] max-lg:py-[40px]">
+          <p className="text-[14px] text-white leading-[1.2] mb-[36px] max-lg:mb-[24px]">
+            {students.label}
+          </p>
           <div className="flex items-start justify-between gap-[32px] max-lg:justify-start max-lg:gap-[12px] max-lg:overflow-x-auto scrollbar-hide">
             {students.images.map((src, i) => (
               <img
@@ -341,13 +356,6 @@ export default function StempsPage() {
           </div>
         </div>
       </section>
-      <div className="pt-[16px]">
-        <Content>
-          <p className="text-[14px] text-neutral-900 leading-[1.2]">
-            {students.label}
-          </p>
-        </Content>
-      </div>
 
       {/* Детали + feedback mockup */}
       <div className="pt-[64px] max-lg:pt-[40px]">
@@ -394,7 +402,7 @@ export default function StempsPage() {
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+202px)] top-[-24px] w-[267px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+155px)] top-[-24px] w-[255px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
