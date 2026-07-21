@@ -370,7 +370,7 @@ export default function StempsPage() {
             src={details.image}
             alt="Шаблоны обратной связи"
             loading="lazy"
-            className="w-full h-auto max-lg:rounded-[10px]"
+            className="w-full h-auto max-lg:rounded-[10px] lg:block lg:max-w-[690px] lg:mx-auto"
           />
         </div>
       </section>
