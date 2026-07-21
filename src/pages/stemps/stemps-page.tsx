@@ -44,10 +44,12 @@ function VideoBand({
   videoId,
   background = false,
   aspectRatio = "1189/697",
+  poster,
 }: {
   videoId: string;
   background?: boolean;
   aspectRatio?: string;
+  poster?: string;
 }) {
   return (
     <div className="w-full bg-black flex justify-center py-[64px] max-lg:py-[24px] px-[24px]">
@@ -56,6 +58,7 @@ function VideoBand({
         background={background}
         className="w-full max-w-[1189px]"
         aspectRatio={aspectRatio}
+        poster={poster}
       />
     </div>
   );
@@ -149,7 +152,11 @@ export default function StempsPage() {
       </div>
 
       {/* Top demo video */}
-      <VideoBand videoId={heroVideoId} background />
+      <VideoBand
+        videoId={heroVideoId}
+        background
+        poster="/images/stemps/posters/hero.jpg"
+      />
 
       {/* Процесс */}
       <div className="pt-[64px] max-lg:pt-[40px]">
@@ -326,7 +333,11 @@ export default function StempsPage() {
       </div>
 
       {/* Demo video (player) — on black; 16:9 to match the source (no crop / bars) */}
-      <VideoBand videoId={demoVideoId} aspectRatio="16/9" />
+      <VideoBand
+        videoId={demoVideoId}
+        aspectRatio="16/9"
+        poster="/images/stemps/posters/demo.jpg"
+      />
 
       {/* White strip between demo video and mobile section */}
       <div className="h-[100px] bg-white max-lg:h-[40px]" />

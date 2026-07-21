@@ -10,6 +10,8 @@ interface LazyVideoProps {
   background?: boolean;
   /** Load immediately without waiting for IntersectionObserver */
   eager?: boolean;
+  /** Blurred placeholder image shown until the player has loaded (instead of a black screen) */
+  poster?: string;
 }
 
 export default function LazyVideo({
@@ -20,9 +22,11 @@ export default function LazyVideo({
   iframeClassName = "w-full h-full",
   background = false,
   eager = false,
+  poster,
 }: LazyVideoProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(eager);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (eager) return;
@@ -48,7 +52,7 @@ export default function LazyVideo({
   return (
     <div
       ref={ref}
-      className={`${className} bg-black`}
+      className={`${className} bg-black${poster ? " relative overflow-hidden" : ""}`}
       style={{ aspectRatio }}
     >
       {visible && (
@@ -60,6 +64,18 @@ export default function LazyVideo({
           loading="lazy"
           referrerPolicy="no-referrer"
           style={{ border: "none", ...iframeStyle }}
+          onLoad={() => setLoaded(true)}
+        />
+      )}
+      {poster && (
+        <img
+          src={poster}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className={`pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover blur-xl transition-opacity duration-500 ${
+            loaded ? "opacity-0" : "opacity-100"
+          }`}
         />
       )}
     </div>
