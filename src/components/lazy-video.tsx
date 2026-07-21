@@ -72,7 +72,7 @@ export default function LazyVideo({
           src={poster}
           alt=""
           aria-hidden="true"
-          loading="lazy"
+          fetchPriority="high"
           className={`pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover blur-xl transition-opacity duration-500 ${
             loaded ? "opacity-0" : "opacity-100"
           }`}
