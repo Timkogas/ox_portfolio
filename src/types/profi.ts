@@ -42,16 +42,21 @@ export interface ProfiData {
     notes: { text: string; x: number; y: number }[];
   };
 
-  /** Решение — the reframed user request / hypothesis paragraph */
-  solution: string;
+  /** Решение — reframed user request: intro line + accented quote + conclusion */
+  solution: {
+    intro: string;
+    quote: string;
+    conclusion: string;
+  };
 
   /** Dark composite — 1-я итерация (аналитические дашборды) */
   iteration1: string;
 
-  /** Video / interviews mockup */
+  /** Video / interviews mockup + interview testimonials */
   video: {
     heading: string;
     image: string;
+    quotes: { quote: string; author: string; initial: string }[];
   };
 
   /** Paragraph before the final composite (переход ко 2-й итерации) */

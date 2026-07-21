@@ -74,7 +74,7 @@ export default function StempsPage() {
     hypotheses,
     hypothesisImages,
     videoIntro,
-    demoImage,
+    demoVideoId,
     students,
     details,
     certificates,
@@ -266,13 +266,13 @@ export default function StempsPage() {
               return (
                 <div
                   key={i}
-                  className="absolute bg-[var(--stemps-card-bg)] rounded-[10px] p-[20px] flex flex-col gap-[12px]"
+                  className="absolute bg-[var(--stemps-hyp-card)] rounded-[10px] p-[16px] flex flex-col gap-[8px]"
                   style={{ left: pos.left, top: pos.top, width: "15.07%" }}
                 >
-                  <span className="text-[14px] font-medium text-[var(--stemps-accent)]">
+                  <span className="text-[12px] font-medium text-[var(--stemps-accent)] leading-[1.2]">
                     {h.label}
                   </span>
-                  <p className="text-[14px] text-neutral-900 leading-[1.3]">
+                  <p className="text-[12px] text-neutral-900 leading-[1.4]">
                     {h.text}
                   </p>
                 </div>
@@ -300,7 +300,7 @@ export default function StempsPage() {
               {hypotheses.map((h, i) => (
                 <div
                   key={i}
-                  className="bg-[var(--stemps-card-bg)] rounded-[10px] p-[20px] flex flex-col gap-[12px]"
+                  className="bg-[var(--stemps-hyp-card)] rounded-[10px] p-[20px] flex flex-col gap-[12px]"
                 >
                   <span className="text-[14px] font-medium text-[var(--stemps-accent)]">
                     {h.label}
@@ -322,17 +322,8 @@ export default function StempsPage() {
         </Content>
       </div>
 
-      {/* Demo — editor screenshot (image 1) on gray */}
-      <section className="w-full bg-[var(--stemps-section-bg)] py-[64px] max-lg:py-[40px] px-[24px]">
-        <div className="w-full max-w-[1189px] mx-auto">
-          <img
-            src={demoImage}
-            alt="Демонстрация конструктора курсов"
-            loading="lazy"
-            className="w-full h-auto rounded-[10px]"
-          />
-        </div>
-      </section>
+      {/* Demo video (player) — on black */}
+      <VideoBand videoId={demoVideoId} />
 
       {/* Student mobile views — on black, ~1315-wide row */}
       <section className="w-full bg-black">

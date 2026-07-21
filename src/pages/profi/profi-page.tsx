@@ -57,6 +57,18 @@ function SectionTitle({ children }: { children: ReactNode }) {
   );
 }
 
+/** Renders `text` with every occurrence of `mark` wrapped in the accent color. */
+function highlight(text: string, mark: string) {
+  return text.split(mark).map((part, i, arr) => (
+    <span key={i}>
+      {part}
+      {i < arr.length - 1 ? (
+        <span className="text-profi-accent">{mark}</span>
+      ) : null}
+    </span>
+  ));
+}
+
 export default function ProfiPage() {
   const {
     projectInfo,
@@ -230,10 +242,17 @@ export default function ProfiPage() {
         </div>
       </section>
 
-      {/* Решение */}
-      <div className="py-[64px] max-lg:py-[40px]">
-        <Content>
-          <p className="text-size-m text-neutral-900">{solution}</p>
+      {/* Решение — intro line + accented quote + conclusion + caption */}
+      <div className="pt-[64px] pb-[16px] max-lg:pt-[40px]">
+        <Content className="flex flex-col gap-[24px] max-lg:gap-[20px]">
+          <p className="text-size-m text-neutral-900">{solution.intro}</p>
+          <p className="text-size-m text-neutral-900">
+            <span className="text-profi-accent">«…»</span> {solution.quote}
+          </p>
+          <p className="text-size-m text-neutral-900">{solution.conclusion}</p>
+          <p className="mt-[24px] text-[14px] text-profi-muted-text leading-[1.2] tracking-[-0.14px]">
+            1 итерация. Обновлённый интерфейс. Проверка гипотезы
+          </p>
         </Content>
       </div>
 
@@ -241,9 +260,11 @@ export default function ProfiPage() {
       <SectionImage src={iteration1} alt="Первая итерация — аналитические дашборды" />
 
       {/* Video / interviews */}
-      <div className="py-[64px] max-lg:py-[40px]">
+      <div className="pt-[64px] max-lg:pt-[40px]">
         <Content className="flex flex-col gap-[36px] max-lg:gap-[24px]">
-          <p className="text-size-m text-neutral-900">{video.heading}</p>
+          <p className="text-size-m text-neutral-900">
+            {highlight(video.heading, "6 глубинных")}
+          </p>
           <img
             src={video.image}
             alt="Тестирование интерфейса с пользователями"
@@ -252,6 +273,38 @@ export default function ProfiPage() {
           />
         </Content>
       </div>
+
+      {/* Interview testimonials — draggable full-bleed carousel */}
+      <Carousel
+        opts={{ align: "start", dragFree: true }}
+        className="w-full pt-[36px] pb-[64px] max-lg:pt-[24px] max-lg:pb-[40px]"
+      >
+        <CarouselContent className="ml-0 pl-[calc((100vw-min(100vw,1440px))/2+12px)] pr-[24px]">
+          {video.quotes.map((t, i) => (
+            <CarouselItem
+              key={i}
+              className="pl-[12px] basis-[339px] max-lg:basis-[280px]"
+            >
+              <div className="h-[200px] bg-profi-card-bg rounded-[10px] p-[24px] flex flex-col justify-between select-none">
+                <p className="text-[14px] text-neutral-900 leading-[1.3]">
+                  {t.quote}
+                </p>
+                <div className="flex items-center gap-[12px]">
+                  <span
+                    aria-hidden="true"
+                    className="flex items-center justify-center size-[24px] rounded-full bg-profi-accent text-white text-[10px] font-medium leading-none"
+                  >
+                    {t.initial}
+                  </span>
+                  <span className="text-[14px] text-neutral-900">
+                    {t.author}
+                  </span>
+                </div>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
 
       {/* Transition to second iteration + caption on white */}
       <div className="pb-[16px] max-lg:pb-[16px]">

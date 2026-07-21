@@ -53,8 +53,8 @@ export interface StempsData {
 
   /** Text before the demo */
   videoIntro: string;
-  /** Demo — editor screenshot (image 1) shown on a gray band */
-  demoImage: string;
+  /** Demo video (course constructor in action) shown on a black band */
+  demoVideoId: string;
 
   /** Student mobile views — row of phone screens */
   students: {
