@@ -271,7 +271,7 @@ export default function ProfiPage() {
         {/* Strip continuation — bleeds the лапка's strip to the viewport right edge */}
         <div
           aria-hidden="true"
-          className="absolute right-0 bottom-[142px] h-[224px] w-[max(24px,calc(50vw-696px))] pointer-events-none max-lg:hidden"
+          className="absolute right-0 bottom-[200px] h-[200px] w-[calc((100vw-min(100vw,1440px))/2+114px)] pointer-events-none max-lg:hidden"
           style={{ background: "linear-gradient(90deg,#E0E6FF,#EEF1FF)" }}
         />
         {/* Decorative лапка — paw overlaps the card's right edge, strip bleeds right */}
@@ -280,13 +280,13 @@ export default function ProfiPage() {
           alt=""
           role="presentation"
           loading="lazy"
-          className="absolute right-[calc((100vw-min(100vw,1440px))/2+24px)] bottom-[82px] w-[480px] h-auto pointer-events-none max-lg:hidden"
+          className="absolute z-10 right-[calc((100vw-min(100vw,1440px))/2+114px)] bottom-[145px] w-[430px] h-auto pointer-events-none max-lg:hidden"
           onError={(e) => {
             e.currentTarget.style.display = "none";
           }}
         />
         <Content className="flex flex-col gap-[48px]">
-          <section className="relative bg-profi-card-bg rounded-[10px] p-[24px] flex flex-col gap-[24px]">
+          <section className="relative bg-profi-card-bg rounded-[10px] p-[24px] pr-[190px] max-lg:pr-[24px] flex flex-col gap-[24px]">
             <p className="text-size-m text-neutral-900">{conclusion.text}</p>
             <div className="flex flex-col gap-[8px]">
               <p className="text-[14px] font-medium text-profi-muted-text leading-[1.2]">
