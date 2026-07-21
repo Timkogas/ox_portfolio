@@ -98,7 +98,7 @@ export default function StempsPage() {
           <img
             src={heroCover}
             alt="STEMPS"
-            className="w-full h-auto max-lg:h-[140px] max-lg:object-cover"
+            className="w-full h-auto"
           />
         </div>
       </section>
@@ -354,14 +354,14 @@ export default function StempsPage() {
         </div>
         {/* Phones — full-width row */}
         <div className="w-full max-w-[1364px] mx-auto px-[24px]">
-          <div className="flex items-start justify-between gap-[32px] max-lg:justify-start max-lg:gap-[12px] max-lg:overflow-x-auto scrollbar-hide">
+          <div className="flex items-start justify-between gap-[32px] max-lg:grid max-lg:grid-cols-2 max-lg:gap-[12px]">
             {students.images.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`${students.label} ${i + 1}`}
                 loading="lazy"
-                className="w-[calc((100%-96px)/4)] h-auto rounded-[10px] max-lg:w-[220px] max-lg:shrink-0"
+                className="w-[calc((100%-96px)/4)] h-auto rounded-[10px] max-lg:w-full"
               />
             ))}
           </div>
