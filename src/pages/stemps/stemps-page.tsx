@@ -395,50 +395,44 @@ export default function StempsPage() {
         </Content>
       </div>
 
-      {/* Conclusion card + blob + footer */}
+      {/* Conclusion — grey card fills the content column (aligned with the
+          other blocks); blob overlaps its right edge and bleeds into the
+          right margin, centred vertically on the card. */}
       <section className="w-full pb-[70px] max-lg:pb-[40px] overflow-x-clip">
-        <div className="w-full max-w-[1440px] mx-auto px-[24px]">
-          {/* Card + blob + footer as one block, centred in the content column;
-              footer aligns to the card's left edge. */}
-          <div className="w-[894px] max-w-full mx-auto flex flex-col gap-[48px] max-lg:gap-[32px]">
-            {/* Card + blob row — the row height equals the card height, so the
-                blob centres vertically on the card (not on the whole block). */}
-            <div className="relative">
-              <img
-                src={blob}
-                alt=""
-                role="presentation"
-                loading="lazy"
-                className="absolute z-10 left-[600px] top-1/2 -translate-x-[16px] -translate-y-1/2 w-[310px] h-auto pointer-events-none max-lg:hidden"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                }}
-              />
-              <section className="relative w-[600px] max-lg:w-full bg-[var(--stemps-section-bg)] rounded-[10px] px-[24px] py-[36px] flex flex-col gap-[24px]">
-                <p className="text-size-m text-neutral-900">
-                  {conclusion.text}
+        <Content className="flex flex-col gap-[48px] max-lg:gap-[32px]">
+          <div className="relative">
+            <img
+              src={blob}
+              alt=""
+              role="presentation"
+              loading="lazy"
+              className="absolute z-10 left-full top-1/2 -translate-x-[94px] -translate-y-1/2 w-[300px] h-auto pointer-events-none max-lg:hidden"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+            <section className="relative bg-[var(--stemps-section-bg)] rounded-[10px] pl-[24px] pr-[100px] py-[36px] max-lg:px-[24px] flex flex-col gap-[24px]">
+              <p className="text-size-m text-neutral-900">{conclusion.text}</p>
+              <div className="flex flex-col gap-[8px]">
+                <p className="text-[14px] font-medium text-[var(--stemps-muted-text)] leading-[1.2]">
+                  {conclusion.nextStepsTitle}
                 </p>
-                <div className="flex flex-col gap-[8px]">
-                  <p className="text-[14px] font-medium text-[var(--stemps-muted-text)] leading-[1.2]">
-                    {conclusion.nextStepsTitle}
-                  </p>
-                  <ul className="list-disc ml-[20px] space-y-1">
-                    {conclusion.nextSteps.map((item, i) => (
-                      <li
-                        key={i}
-                        className="text-[14px] text-neutral-900 leading-[1.3]"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </section>
-            </div>
-
-            <Footer />
+                <ul className="list-disc ml-[20px] space-y-1">
+                  {conclusion.nextSteps.map((item, i) => (
+                    <li
+                      key={i}
+                      className="text-[14px] text-neutral-900 leading-[1.3]"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
           </div>
-        </div>
+
+          <Footer />
+        </Content>
       </section>
     </div>
   );
