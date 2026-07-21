@@ -233,10 +233,10 @@ export default function StempsPage() {
                 Drawn above screenshots, below cards. */}
             {[
               { src: "/images/stemps/kk/arrow-1.svg", left: "22.51%", top: "9.75%", width: "7.54%" }, // №3 → «Редактировать»
-              { src: "/images/stemps/kk/arrow-2.svg", left: "19.00%", top: "26.76%", width: "14.11%" }, // №1 → «Структура курса +»
-              { src: "/images/stemps/kk/arrow-3.svg", left: "71.94%", top: "15.76%", width: "8.43%" }, // №5 → правый тулбар
-              { src: "/images/stemps/kk/arrow-4.svg", left: "62.81%", top: "50.92%", width: "17.29%" }, // №2 → тулбар блоков
-              { src: "/images/stemps/kk/arrow-5.svg", left: "27.07%", top: "54.07%", width: "25.89%" }, // №4 → «Черновик»
+              { src: "/images/stemps/kk/arrow-2.svg", left: "19.00%", top: "29.54%", width: "15.10%" }, // №1 → «Структура курса +»
+              { src: "/images/stemps/kk/arrow-3.svg", left: "70.96%", top: "17.85%", width: "9.42%" }, // №5 → правый тулбар (2-й айтем)
+              { src: "/images/stemps/kk/arrow-4.svg", left: "66.31%", top: "47.31%", width: "13.78%" }, // №2 → бейдж «Таблица»
+              { src: "/images/stemps/kk/arrow-5.svg", left: "36.99%", top: "71.48%", width: "15.90%" }, // №4 → «Черновик» (слева от ⋮)
             ].map((a, i) => (
               <img
                 key={i}
